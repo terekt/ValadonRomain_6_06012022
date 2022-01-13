@@ -1,0 +1,25 @@
+Page principale
+Page pour chaque photographe
+
+pour photos/ vidéos, voir structure des données en JSON en exemple (rajouter champ description)
+garder le pattern de Factory pour affichage des image/vidéos
+
+
+reprendre HMTL/CSS fournit en corrigeant les erreurs
+
+Pas d'erreur console
+
+Accessibilité au premier plan
+Test avec screen reader (naviguation via clavier)
+
+
+note annexe :
+-montrer image preview pour les vidéos
+-like total d'un photographe
+-trier les média (popularité/titre)
+-croix en haut à droite pour fermer la lightbox
+-bouton à gauche/droite pour naviguer parmis les médias (touches gauche/droite aussi)
+-formulaire de contact d'artiste via modal (envoie des données uniquement dans la console)
+
+
+
