@@ -28,9 +28,3 @@ function photographerFactory(data) {
     }
     return { name, picture, getUserCardDOM }
 }
-
-/*
-const a=document.createElement('a');
-a.setAttribute('href',"./photographer.html?photographerId="+id)
-const article = document.createElement( 'article' );
-a.appendChild(article);*/

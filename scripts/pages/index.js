@@ -1,6 +1,13 @@
     async function getPhotographers() {
-        return fetch('https://raw.githubusercontent.com/OpenClassrooms-Student-Center/Front-End-Fisheye/main/data/photographers.json')
-        .then(response => response.json());
+        let url = 'https://raw.githubusercontent.com/OpenClassrooms-Student-Center/Front-End-Fisheye/main/data/photographers.json';
+        try {
+            let res = await fetch(url)
+            let json = await res.json();
+            return json;
+        }
+        catch (error){
+            console.log(error);
+        } 
     }
 
     async function displayData(photographers) {
@@ -13,11 +20,11 @@
         });
     };
 
-    async function init() {
+    async function initIndex() {
         // Récupère les datas des photographes
         const { photographers } = await getPhotographers();
         displayData(photographers);
     };
     
-    init();
+    initIndex();
     
