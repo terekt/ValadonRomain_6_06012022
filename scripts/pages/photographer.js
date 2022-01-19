@@ -29,7 +29,6 @@ async function displayProfile() {
     console.log (photographerData);
     const picture = 'assets/photographers/profils/' + photographerData[0].portrait;
     const profileSection = document.querySelector(".photograph-header");
-    const profile = document.createElement('div');
     const infoProfile = document.createElement('div');
     const h2 = document.createElement('h2');
     const h3 = document.createElement('h3');
@@ -42,14 +41,12 @@ async function displayProfile() {
     h4.textContent = photographerData[0].tagline;
     img.setAttribute("src", picture);
 
-    profileSection.appendChild(profile)
-    profile.appendChild(infoProfile);
+    profileSection.appendChild(infoProfile)
     infoProfile.appendChild(h2);
     infoProfile.appendChild(h3);
     infoProfile.appendChild(h4);
-    profile.appendChild(img);
-
-    return (profile);
+    profileSection.appendChild(infoProfile.previousElementSibling);
+    profileSection.appendChild(img);
 };
 
 

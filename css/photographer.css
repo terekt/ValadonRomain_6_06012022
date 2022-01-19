@@ -1,3 +1,7 @@
+* {
+    padding: 0;
+    margin: 0;
+}
 
 p, h1, h2, h3, h4, h5, a {  
     font-style: normal;
@@ -29,7 +33,7 @@ h4 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 10vw;
+    padding: 0 4vw;
 }
 
 .photograph-header img {
@@ -44,27 +48,6 @@ h4 {
     color: #D3573C;
     font-size: 36px;
     font-weight: normal;
-}
-
-.photograph-header h3 {
-    
-}
-
-.photograph-header h4 {
-    
-}
-
-.Profile {
-    display: flex;
-    justify-content: space-between;
-}
-
-.infoProfile {
-    margin: 20px;
-}
-
-.imageProfile {
-    margin: 20px;
 }
 
 .contact_button {
