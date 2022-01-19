@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <title>Fisheye - photographe </title>
 </head>
 
@@ -21,10 +21,11 @@
                 <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
             </div>
 
-            <div class="sort">Trier par
+            <div class="sort">
+                Trier par
                 <container id="sortingMenu" aria-haspopup="true" aria-expanded="false" aria-label="Tirez par"
                     tabindex="0">
-                    <i id="openMenuButton" class="fas fa-chevron-up"></i>
+                    <i id="openMenuButton" class="fas fa-chevron-up openMenuButton"></i>
                     <span class="option selected" id="option1" tabindex="-1">Nom</span>
                     <span class="option" id="option2" tabindex="-1">Date</span>
                     <span class="option last" id="option3" tabindex="-1">Popularité</span>
@@ -32,6 +33,7 @@
             </div>
         </main>
     </div>
+    <div class="media"></div>
     <div id="contact_modal">
         <div class="modal">
             <header>
@@ -51,7 +53,7 @@
     <script src="scripts/utils/getPhotographers.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
     <script src="scripts/pages/photographer.js"></script>
-    <script src="scripts/factories/Profile.js"></script>
+    <script src="scripts/factories/media.js"></script>
 </body>
 
 </html>
