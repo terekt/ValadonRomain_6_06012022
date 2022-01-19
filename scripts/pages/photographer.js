@@ -1,26 +1,3 @@
-// On récupère l'id du photographe dans l'url de la page et on le convertie en valeur décimale 
-async function photographerID() {
-    const url = new URL(window.document.location.href).searchParams.get('id');
-    //const urlId = parseInt(url, 10);
-    return (url);
-}
-
-async function getPhotographers() {
-    let url = '../../data/photographers.json';
-    try {
-        let res = await fetch(url)
-        let json = await res.json();
-        const photographerId = await photographerID();
-        const photographerData = json.photographers.find(photographer => photographer.id == photographerId);
-        const photographerMedia = json.media.filter(data => data.photographerId == photographerId);
-        console.log(photographerData);
-        return [photographerData, photographerMedia];
-    }
-    catch (error) {
-        console.log(error);
-    }
-}
-
 async function displayProfile() {
 
     const photographerData = await getPhotographers(0);
