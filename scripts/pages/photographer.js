@@ -1,9 +1,10 @@
 // On récupère l'id du photographe dans l'url de la page et on le convertie en valeur décimale 
 const url = new URL(window.document.location.href).searchParams.get('id');
 const urlId = parseInt(url, 10);
+console.log(urlId);
 
 async function getPhotographers() {
-    let url = 'https://raw.githubusercontent.com/OpenClassrooms-Student-Center/Front-End-Fisheye/main/data/photographers.json';
+    let url = '../../data/photographers.json';
     try {
         let res = await fetch(url)
         let json = await res.json();
@@ -33,7 +34,7 @@ async function displayProfile() {
             const imageProfile = document.createElement('div');
             imageProfile.setAttribute('class', 'imageProfile');
             const img = document.createElement( 'img' );
-            img.setAttribute("src", picture)
+            img.setAttribute("src", ProfileData.portrait);
             const h2 = document.createElement( 'h2' );
             h2.textContent = ProfileData.name;
             const h3 = document.createElement( 'h3' );
