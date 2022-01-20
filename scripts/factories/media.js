@@ -11,13 +11,13 @@ function mediaFactory(data, photographerId) {
 
         if (image != undefined) {
             media = document.createElement('img');
-            media.src = picture;
-            media.alt = title;
+            media.setAttribute("src", picture);
+            media.setAttribute("alt", title);
             media.setAttribute("loading", "lazy");
         } else if (videoItem != undefined) {
             media = document.createElement('video');
-            media.src = videoItem;
-            media.title = title;
+            media.setAttribute("src", videoItem);
+            media.setAttribute("title", title);
             media.setAttribute("preload", "metadata");
         }
 

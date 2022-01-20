@@ -35,7 +35,6 @@ async function displayMedia(data) {
         const mediaCardDOM = mediaModel.getMediaCardDOM();
         mediaSection.appendChild(mediaCardDOM);
     });
-    
 }
 
 

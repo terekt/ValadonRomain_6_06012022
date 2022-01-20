@@ -6,7 +6,6 @@ async function getPhotographers() {
         const photographerId = await photographerID();
         const photographerData = json.photographers.find(photographer => photographer.id == photographerId);
         const photographerMedia = json.media.filter(data => data.photographerId == photographerId);
-        console.log(photographerData);
         return [photographerData, photographerMedia];
     }
     catch (error) {

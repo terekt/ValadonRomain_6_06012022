@@ -1,3 +1,11 @@
+a{
+    color: white;
+}
+
+a:visited{
+    color: white;
+}
+
 #contact_modal {
     display: none;
 }
@@ -92,68 +100,72 @@ form input {
     border-radius: 5px;
 }
 
-a{
-    color: white;
-}
-a:visited{
-    color: white;
-}
-
-.sort{
-    margin: 20px 0;
+.sort {
+    margin: 50px 0;
     padding: 0;
     display: flex;
     position: relative;
     z-index: 100;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 23px;
 }
 
-#openMenuButton{
+#openMenuButton {
     cursor: pointer;
     position:absolute;
-    right: 10px;
-    top:15px;
+    right: 17px;
+    top:20px;
     border:none;
     background-color: transparent;
     color: white;
     transform: rotate(360deg);
     transition: 100ms;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 23px;
 }
 
-#openMenuButton.reverse{
+#openMenuButton.reverse {
     transform: rotate(180deg);
     transition: 100ms;
 }
 
-#sortingMenu{
+#sortingMenu {
     background-color: #901C1C;
     font-weight: bold;
     color: white;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: -10px;
+    margin-top: -22px;
     margin-left: 20px;
-    width: 130px;
+    width: 170px;
+    height: 70px;
     position: absolute;
     left : 5vw;
     padding: 0 10px;
     border: solid 2px transparent;
 }
 
-.option{
-    
+.option {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 23px;
     padding: 11px;
     margin: 0;
     display: none;
 }
-.option.selected{
+.option.selected {
     display: block;
 }
 
-.menuOpened{
+.menuOpened {
     display: block;
     z-index: 10;
     border-bottom: solid 1px white;
 }
-.menuOpened.last{
+.menuOpened.last {
     border-bottom: none;
 }
