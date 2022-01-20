@@ -1,4 +1,4 @@
-// Récupère et affiches les infos du photographe en question
+// Affiches les infos du photographe
 async function displayProfile(photographerData) {
 
     const picture = 'assets/photographers/profils/' + photographerData[0].portrait;
@@ -23,7 +23,7 @@ async function displayProfile(photographerData) {
     profileSection.appendChild(img);
 };
 
-// Récupère et affiches les médias du photographe en question
+// Affiches les médias du photographe
 async function displayMedia(data) {
 
     const photographerId = await photographerID();
@@ -37,7 +37,7 @@ async function displayMedia(data) {
     });
 }
 
-
+// Récupère les médias et infos du photographe et lance les fonctions pour les afficher
 async function initPhotographer() {
 
     const photographerData = await getPhotographers(0);

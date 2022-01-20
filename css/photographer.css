@@ -114,8 +114,8 @@ form input {
 #openMenuButton {
     cursor: pointer;
     position:absolute;
-    right: 17px;
-    top:20px;
+    right: 25px;
+    top: 20px;
     border:none;
     background-color: transparent;
     color: white;
@@ -139,11 +139,10 @@ form input {
     border-radius: 5px;
     cursor: pointer;
     margin-top: -22px;
-    margin-left: 20px;
+    margin-left: 120px;
     width: 170px;
     height: 70px;
     position: absolute;
-    left : 5vw;
     padding: 0 10px;
     border: solid 2px transparent;
 }
@@ -156,6 +155,7 @@ form input {
     padding: 11px;
     margin: 0;
     display: none;
+    text-align: left;
 }
 .option.selected {
     display: block;
