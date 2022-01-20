@@ -1,6 +1,5 @@
-async function displayProfile() {
+async function displayProfile(photographerData) {
 
-    const photographerData = await getPhotographers(0);
     const picture = 'assets/photographers/profils/' + photographerData[0].portrait;
     const profileSection = document.querySelector(".photograph-header");
     const infoProfile = document.createElement('div');
@@ -23,13 +22,31 @@ async function displayProfile() {
     profileSection.appendChild(img);
 };
 
-async function displayMedia() {
-    const photographerMedia = await getPhotographers(1);
+async function displayMedia(data) {
+
     const photographerId = await photographerID();
     const mediaSection = document.querySelector(".media");
+    const mediaData = data.filter( media => media.photographerId == getPhotographerId() )
 
-    //factory pour les médias
+    mediaData.foreach((media) => {
+        const mediaModel = mediaFactory(media, photographerId);
+        const mediaCardDOM = mediaModel.getMediaCardDOM();
+        mediaSection.appendChild(mediaCardDOM);
+    });
+    
 }
 
-displayProfile();
+async function initPhotographer() {
+
+    const photographerData = await getPhotographers(0);
+    const photographerMedia = await getPhotographers(1);
+
+    displayMedia(photographerMedia);
+    displayProfile(photographerData);
+
+}
+
+
+initPhotographer();
+
 
