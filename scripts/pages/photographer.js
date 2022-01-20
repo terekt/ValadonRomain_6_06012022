@@ -1,3 +1,4 @@
+// Récupère et affiches les infos du photographe en question
 async function displayProfile(photographerData) {
 
     const picture = 'assets/photographers/profils/' + photographerData[0].portrait;
@@ -22,19 +23,21 @@ async function displayProfile(photographerData) {
     profileSection.appendChild(img);
 };
 
+// Récupère et affiches les médias du photographe en question
 async function displayMedia(data) {
 
     const photographerId = await photographerID();
-    const mediaSection = document.querySelector(".media");
-    const mediaData = data.filter( media => media.photographerId == getPhotographerId() )
+    const mediaSection = document.getElementsByClassName(".media");
+    console.log(data[1]);
 
-    mediaData.foreach((media) => {
+    data[1].foreach((media) => {
         const mediaModel = mediaFactory(media, photographerId);
         const mediaCardDOM = mediaModel.getMediaCardDOM();
         mediaSection.appendChild(mediaCardDOM);
     });
     
 }
+
 
 async function initPhotographer() {
 

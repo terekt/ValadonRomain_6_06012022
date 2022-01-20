@@ -2,9 +2,9 @@ function mediaFactory(data, photographerId) {
 
     const Id = photographerId;
 
-    const { title, image, video, id, likes, date, price } = data;
+    const { id, title, image, video, likes, date, price } = data;
     const picture = `assets/photographers/${Id}/${image}`;
-    const video = `assets/photographers/${Id}/${video}`;
+    const videoItem = `assets/photographers/${Id}/${video}`;
 
     function getMediaCardDOM() {
         var media = undefined;
@@ -14,9 +14,9 @@ function mediaFactory(data, photographerId) {
             media.src = picture;
             media.alt = title;
             media.setAttribute("loading", "lazy");
-        } else if (video != undefined) {
+        } else if (videoItem != undefined) {
             media = document.createElement('video');
-            media.src = video;
+            media.src = videoItem;
             media.title = title;
             media.setAttribute("preload", "metadata");
         }
