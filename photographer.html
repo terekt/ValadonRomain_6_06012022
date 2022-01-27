@@ -28,10 +28,12 @@
             <div class="modal-top">
                 <div class="modal-top-align">
                     <h2>Contactez-moi</h2>
-                    <img src="assets/icons/close.svg" onclick="closeModal()" />
+                    <button class="modal-close">
+                        <img src="assets/icons/close.svg" />
+                    </button>
                 </div>
             </div>
-            <form>
+            <form id="myForm">
                 <div class="formData">
                     <label>Prénom</label>
                     <input class="text-control" type="text" id="first" name="first" minlength="2" />

@@ -48,6 +48,7 @@ async function initPhotographer() {
 
 }
 
+//Factory qui traite l'affichage des médias d'un photographe
 function mediaFactory(data) {
     const { id, photographerId, video, title, image, likes, date, price, alt } = data;
     const media = `./assets/photographers/${photographerId}/${image}`;

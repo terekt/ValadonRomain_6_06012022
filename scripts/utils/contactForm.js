@@ -23,9 +23,11 @@ async function displayModal() {
     var nameDisplayed = false;
     let errorState = [false, false, false];
     const submitButton = document.querySelector(".submit");
+
     const formInput = document.querySelectorAll(".formData input");
     const formInputArea = document.querySelector(".formData textarea");
     const formData = document.querySelectorAll(".formData");
+    const modalClose = document.querySelector(".modal-close");
 
     submitButton.addEventListener("click", validateForm);
 
@@ -40,6 +42,17 @@ async function displayModal() {
     function validateForm(x) {
         x.preventDefault();
         checkFields();
+    }
+
+    // Event de fermeture de la modal 
+    modalClose.forEach((btn) => btn.addEventListener("click", closeModal));
+
+
+
+    function closeModal() {
+        const modal = document.getElementById("contact_modal");
+        modal.style.display = "none";
+        resetData();
     }
 
     // Event de validation du formulaire
@@ -146,11 +159,13 @@ async function displayModal() {
 
     }
 
+    // Reset les données du formulaire
+    function resetData() {
+        document.getElementById("myForm").reset();
+        errorReset(formData[0], 0);
+        errorReset(formData[1], 1);
+        errorReset(formData[2], 2);
+        errorReset(formData[3], 3);
+    }
 
-}
-
-function closeModal() {
-    const modal = document.getElementById("contact_modal");
-    modal.style.display = "none";
-    resetData();
 }
