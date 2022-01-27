@@ -52,6 +52,11 @@ async function displayModal() {
         // On récupère les resultats de chaque champ dans une array
         let validList = [nameValid(), surnameValid(), emailValid(), messageValid()];
 
+        console.log(inputList);
+        console.log(validList);
+        console.log(formData);
+
+
         // On vérifie si les champs sont vides et erronés
         if (inputList.includes(0) || validList.includes(false)) {
             return false;
@@ -100,12 +105,12 @@ async function displayModal() {
 
     // Validation message
     function messageValid() {
-        if (formInput[1].value.length > 1) {
+        if (formInputArea.value.length > 1) {
             errorReset(formData[3], 3);
             return true;
         }
         else {
-            errorMessage(error2, formData[3], 3);
+            errorMessage(error4, formData[3], 3);
             return false;
         }
     }
