@@ -8,6 +8,13 @@ a:visited{
 
 #contact_modal {
     display: none;
+    background-color: rgb(0 0 0 / 40%);
+    height: 100%;
+    width: 100%;
+    z-index: 200;
+    position: fixed;
+    top: 0;
+    left: 0;
 }
 
 .photograph-header {
@@ -37,6 +44,7 @@ a:visited{
     font-size: 20px;
     font-weight: bold;
     color: white;
+    margin-top: 26px;
     padding: 11px;
     width: 170px;
     height: 70px;
@@ -58,19 +66,31 @@ a:visited{
     margin: auto;
 }
 
-.modal header {
+.modal-top {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
+.modal-top-align {
+    display: flex;
     justify-content: space-between;
     width: 100%;
 }
 
-.modal header img {
+.modal-top .modal-top-align img {
     cursor: pointer;
 }
 
-.modal header h2 {
+.modal-top .modal-top-align h2, .modal-top h2 {
     font-size: 64px;
     font-weight: normal;
-    text-align: center;
+    color: #312E2E;
+    margin-top: 0;
+}
+
+.modal-name {
+    left: 0;
 }
 
 form {
@@ -90,7 +110,6 @@ form div {
     flex-direction: column;
     width: 100%;
     align-items: self-start;
-    margin-bottom: 26px;
 }
 
 form input {
@@ -98,6 +117,18 @@ form input {
     height: 68px;
     border: none;
     border-radius: 5px;
+}
+
+.text-control {
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 47px;
+}
+
+.message {
+    columns: 2;
 }
 
 .sort {
@@ -168,4 +199,52 @@ form input {
 }
 .menuOpened.last {
     border-bottom: none;
+}
+
+.media {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.media_card {
+    margin-bottom: 30px;
+}
+
+.media_card img, .media_card video {
+    width: 350px;
+    height: 300px;
+    border-radius: 5px;
+    overflow: hidden;    
+    object-fit: cover;
+}
+
+.media_card h3 {
+    font-size: 24px;
+    line-height: 31px;
+}
+
+.media_info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.media_likes {
+    display: flex;
+    align-items: center;
+}
+
+.media_likes button {
+    background: none;
+	color: inherit;
+	border: none;
+	cursor: pointer;
+	outline: inherit;
+}
+
+.like {
+    font-size: 18px;
+    margin-left: 7px;
+    color: #911C1C;
 }

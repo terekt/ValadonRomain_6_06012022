@@ -1,10 +1,9 @@
-function mediaFactory(data, photographerId) {
+function test2(data) {
 
-    const Id = photographerId;
 
-    const { id, title, image, video, likes, date, price } = data;
-    const picture = `assets/photographers/${Id}/${image}`;
-    const videoItem = `assets/photographers/${Id}/${video}`;
+    const { id, photographerId, video, title, image, likes, date, price, alt } = data;
+    const picture = `./assets/photographers/${photographerId}/${image}`;
+    const videoItem = `./assets/photographers/${photographerId}/${video}`;
 
     function getMediaCardDOM() {
         var media = undefined;
@@ -20,11 +19,6 @@ function mediaFactory(data, photographerId) {
             media.setAttribute("title", title);
             media.setAttribute("preload", "metadata");
         }
-
-        media.setAttribute("onclick", "lightbox(event)");
-        media.setAttribute("tabindex", 0);
-        media.dataset.date = date;
-        media.className = 'img_cover';
 
         return media
 

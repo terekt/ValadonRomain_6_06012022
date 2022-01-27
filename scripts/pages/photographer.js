@@ -1,5 +1,7 @@
 // Affiches les infos du photographe
-async function displayProfile(photographerData) {
+async function displayProfile() {
+
+    const photographerData = await getPhotographers();
 
     const picture = 'assets/photographers/profils/' + photographerData[0].portrait;
     const profileSection = document.querySelector(".photograph-header");
@@ -24,30 +26,78 @@ async function displayProfile(photographerData) {
 };
 
 // Affiches les médias du photographe
-async function displayMedia(data) {
+async function displayMedia() {
 
-    const photographerId = await photographerID();
-    const mediaSection = document.getElementsByClassName(".media");
-    console.log(data[1]);
+    const photographerMedia = await getPhotographers();
+    const mediaSection = document.querySelector(".media");
 
-    data[1].foreach((media) => {
-        const mediaModel = mediaFactory(media, photographerId);
-        const mediaCardDOM = mediaModel.getMediaCardDOM();
-        mediaSection.appendChild(mediaCardDOM);
+    mediaSection.innerHTML = "";
+    photographerMedia[1].forEach((media) => {
+        const MediaModel = mediaFactory(media);
+        const MediaDOM = MediaModel.MediaDOM();
+        mediaSection.appendChild(MediaDOM);
     });
+
 }
 
 // Récupère les médias et infos du photographe et lance les fonctions pour les afficher
 async function initPhotographer() {
 
-    const photographerData = await getPhotographers(0);
-    const photographerMedia = await getPhotographers(1);
-
-    displayMedia(photographerMedia);
-    displayProfile(photographerData);
+    displayMedia();
+    displayProfile();
 
 }
 
+function mediaFactory(data) {
+    const { id, photographerId, video, title, image, likes, date, price, alt } = data;
+    const media = `./assets/photographers/${photographerId}/${image}`;
+
+    function MediaDOM() {
+        const mediaList = document.createElement("div");
+        mediaList.setAttribute("class","media_card");
+
+        let card = "";
+        card += `<a href="#" data-mediaid="${id}" role="button">`;
+
+        if (image !== undefined) {
+            card += `<img src="${media}" alt="${alt}">`;
+        } else if (video !== undefined) {
+            card += `<video controls>
+                <source src="./assets/photographers/${photographerId}/${video}" type="video/mp4">
+            </video>`;            
+        }
+
+        card += `
+            </a>
+            <div class="media_info">
+                <div>
+                    <h3>${title}</h3>
+                </div>
+                <div class="media_likes">
+                    <h3>${likes}</h3>
+                    <button>
+                        <i class="fas fa-heart like" role="button"></i>
+                    </button>
+                </div>
+            </div>`;
+
+        mediaList.innerHTML = card;
+
+        return mediaList;
+    }
+    return {
+        id,
+        photographerId,
+        video,
+        title,
+        image,
+        likes,
+        date,
+        price,
+        alt,
+        MediaDOM,
+    };
+}
 
 initPhotographer();
 
