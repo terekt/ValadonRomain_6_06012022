@@ -15,7 +15,7 @@ async function launchModal() {
         const nameModal = document.createElement("h2");
         
         nameModal.setAttribute("class", "modal-name");
-        nameModal.textContent = name;
+        nameModal.textContent = name; 
         nameField.appendChild(nameModal);
         nameDisplayed = true;
     }
