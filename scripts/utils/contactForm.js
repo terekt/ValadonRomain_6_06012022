@@ -44,14 +44,14 @@ async function displayModal() {
         checkFields();
     }
 
-    // Event de fermeture de la modal 
+    // Event de fermeture de la modal
     modalClose.forEach((btn) => btn.addEventListener("click", closeModal));
 
 
 
     function closeModal() {
-        const modal = document.getElementById("contact_modal");
-        modal.style.display = "none";
+        const modalClosed = document.getElementById("contact_modal");
+        modalClosed.style.display = "none";
         resetData();
     }
 

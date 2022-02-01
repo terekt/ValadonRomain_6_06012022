@@ -63,7 +63,7 @@ function mediaFactory(data) {
         if (image !== undefined) {
             card += `<img src="${media}" alt="${alt}">`;
         } else if (video !== undefined) {
-            card += `<video controls>
+            card += `<video>
                 <source src="./assets/photographers/${photographerId}/${video}" type="video/mp4">
             </video>`;            
         }
