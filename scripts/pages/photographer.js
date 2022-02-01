@@ -40,12 +40,12 @@ async function displayMedia() {
 
 }
 
+
 // Récupère les médias et infos du photographe et lance les fonctions pour les afficher
 async function initPhotographer() {
 
     displayMedia();
     displayProfile();
-
 }
 
 //Factory qui traite l'affichage des médias d'un photographe

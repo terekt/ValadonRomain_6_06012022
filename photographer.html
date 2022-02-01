@@ -18,7 +18,7 @@
         </header>
         <main id="main">
             <div class="photograph-header">
-                <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+                <button class="contact_button" onclick="launchModal()">Contactez-moi</button>
             </div>
         </main>
         <div class="media"></div>
@@ -29,7 +29,7 @@
                 <div class="modal-top-align">
                     <h2>Contactez-moi</h2>
                     <button class="modal-close">
-                        <img src="assets/icons/close.svg" />
+                        <img src="assets/icons/close.svg"  onclick="closeModal()" />
                     </button>
                 </div>
             </div>
@@ -56,8 +56,8 @@
     </div>
     <script src="scripts/utils/getId.js"></script>
     <script src="scripts/utils/sort.js"></script>
+    <script src="./scripts/utils/contactForm.js"></script>
     <script src="scripts/utils/getPhotographers.js"></script>
-    <script src="/scripts/utils/contactForm.js"></script>
     <script src="scripts/pages/photographer.js"></script>
     <script src="scripts/factories/media.js"></script>
 </body>
