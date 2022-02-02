@@ -59,12 +59,10 @@ async function manageLikes(totallikes){
             let state = clickHeart.getAttribute('data-state') || 0;
 
             if (state == 0) {
-                console.log("click1");
                 siblingClick.innerHTML = parseInt(siblingClick.innerHTML) + 1;
                 totallike.innerHTML ++;
                 clickHeart.setAttribute('data-state', 1);
             } else {
-                console.log("click2");
                 siblingClick.innerHTML = parseInt(siblingClick.innerHTML) - 1;
                 totallike.innerHTML --;
                 clickHeart.setAttribute('data-state', 0);
@@ -89,8 +87,6 @@ async function displayMedia() {
 
 // Récupère les médias et infos du photographe et lance les fonctions pour les afficher
 async function initPhotographer() {
-
-    //const photographerData = await getPhotographers();
 
     displayMedia();
     displayProfile();

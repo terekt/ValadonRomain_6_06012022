@@ -174,6 +174,28 @@ form input {
     line-height: 23px;
 }
 
+#sortingMenu:hover #openMenuButton {
+    transform: rotate(180deg);
+    transition: 100ms;
+}
+
+#sortingMenu:hover .option {
+    display: block;
+    margin-bottom: 5px;
+}
+
+#sortingMenu:hover .selected {
+    margin-top: 11px;
+}
+
+#sortingMenu:hover .sort-list {
+    width: 100%;
+    height: 230%;
+    border-radius: 1px;
+    outline: 12px solid #901C1C;
+    background-color: #901C1C;
+}
+
 #openMenuButton {
     cursor: pointer;
     position:absolute;
@@ -182,13 +204,12 @@ form input {
     border:none;
     background-color: transparent;
     color: white;
-    transform: rotate(360deg);
-    transition: 100ms;
     font-style: normal;
     font-weight: bold;
     font-size: 18px;
     line-height: 23px;
 }
+
 
 #openMenuButton.reverse {
     transform: rotate(180deg);
