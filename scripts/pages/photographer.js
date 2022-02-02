@@ -23,7 +23,55 @@ async function displayProfile() {
     infoProfile.appendChild(h4);
     profileSection.appendChild(infoProfile.previousElementSibling);
     profileSection.appendChild(img);
+
 };
+
+
+//Affiche le prix et les likes en bas de l'écran
+async function getFixedCounter() {
+
+    const photographerMedia = await getPhotographers();
+    const price = photographerMedia[0].price;
+    let likes = photographerMedia[1].map(a => a.likes);
+
+    const TotalLikes = likes.reduce((partialSum, a) => partialSum + a, 0);
+    const fixedCounter = document.querySelector('.fixed-counter');
+    const hourlyRate = document.createElement('p');
+
+    hourlyRate.innerHTML = `<span class="total-likes">${TotalLikes}</span> <i class="fas fa-heart total-heart"></i> <span class="daily-rate">${price}€ / jour</span>`;
+    fixedCounter.appendChild(hourlyRate);
+
+    manageLikes(hourlyRate);
+}
+
+//incrémente les likes au clic sur les coeurs
+async function manageLikes(totallikes){
+    await getPhotographers();
+    const like = document.querySelectorAll(".like_img");
+    const totallike = totallikes.querySelector(".total-likes");
+    console.log(totallike);
+
+    for (const clickHeart of like) {
+        clickHeart.addEventListener("click", () => {
+            //récupère le nombre de like
+            let siblingClick = clickHeart.parentNode.previousElementSibling;
+            //créé une variable pour définir l'état de chaque boutton like
+            let state = clickHeart.getAttribute('data-state') || 0;
+
+            if (state == 0) {
+                console.log("click1");
+                siblingClick.innerHTML = parseInt(siblingClick.innerHTML) + 1;
+                totallike.innerHTML ++;
+                clickHeart.setAttribute('data-state', 1);
+            } else {
+                console.log("click2");
+                siblingClick.innerHTML = parseInt(siblingClick.innerHTML) - 1;
+                totallike.innerHTML --;
+                clickHeart.setAttribute('data-state', 0);
+            }
+        });
+      }
+}
 
 // Affiches les médias du photographe
 async function displayMedia() {
@@ -37,68 +85,18 @@ async function displayMedia() {
         const MediaDOM = MediaModel.MediaDOM();
         mediaSection.appendChild(MediaDOM);
     });
-
 }
-
 
 // Récupère les médias et infos du photographe et lance les fonctions pour les afficher
 async function initPhotographer() {
 
+    //const photographerData = await getPhotographers();
+
     displayMedia();
     displayProfile();
+    getFixedCounter();
 }
 
-//Factory qui traite l'affichage des médias d'un photographe
-function mediaFactory(data) {
-    const { id, photographerId, video, title, image, likes, date, price, alt } = data;
-    const media = `./assets/photographers/${photographerId}/${image}`;
-
-    function MediaDOM() {
-        const mediaList = document.createElement("div");
-        mediaList.setAttribute("class","media_card");
-
-        let card = "";
-        card += `<a href="#" data-mediaid="${id}" role="button">`;
-
-        if (image !== undefined) {
-            card += `<img src="${media}" alt="${alt}">`;
-        } else if (video !== undefined) {
-            card += `<video>
-                <source src="./assets/photographers/${photographerId}/${video}" type="video/mp4">
-            </video>`;            
-        }
-
-        card += `
-            </a>
-            <div class="media_info">
-                <div>
-                    <h3>${title}</h3>
-                </div>
-                <div class="media_likes">
-                    <h3>${likes}</h3>
-                    <button>
-                        <i class="fas fa-heart like" role="button"></i>
-                    </button>
-                </div>
-            </div>`;
-
-        mediaList.innerHTML = card;
-
-        return mediaList;
-    }
-    return {
-        id,
-        photographerId,
-        video,
-        title,
-        image,
-        likes,
-        date,
-        price,
-        alt,
-        MediaDOM,
-    };
-}
 
 initPhotographer();
 

@@ -1,29 +1,51 @@
-function test2(data) {
-
-
+//Factory qui traite l'affichage des médias d'un photographe
+function mediaFactory(data) {
     const { id, photographerId, video, title, image, likes, date, price, alt } = data;
-    const picture = `./assets/photographers/${photographerId}/${image}`;
-    const videoItem = `./assets/photographers/${photographerId}/${video}`;
+    const media = `./assets/photographers/${photographerId}/${image}`;
 
-    function getMediaCardDOM() {
-        var media = undefined;
+    function MediaDOM() {
+        const mediaList = document.createElement("div");
+        mediaList.setAttribute("class","media_card");
 
-        if (image != undefined) {
-            media = document.createElement('img');
-            media.setAttribute("src", picture);
-            media.setAttribute("alt", title);
-            media.setAttribute("loading", "lazy");
-        } else if (videoItem != undefined) {
-            media = document.createElement('video');
-            media.setAttribute("src", videoItem);
-            media.setAttribute("title", title);
-            media.setAttribute("preload", "metadata");
+        let card = "";
+        card += `<a href="#" data-mediaid="${id}" role="button">`;
+
+        if (image !== undefined) {
+            card += `<img src="${media}" alt="${alt}">`;
+        } else if (video !== undefined) {
+            card += `<video>
+                <source src="./assets/photographers/${photographerId}/${video}" type="video/mp4">
+            </video>`;            
         }
 
-        return media
+        card += `
+            </a>
+            <div class="media_info">
+                <div>
+                    <h3>${title}</h3>
+                </div>
+                <div class="media_likes">
+                    <h3>${likes}</h3>
+                    <button>
+                        <i class="fas fa-heart like_img" role="button"></i>
+                    </button>
+                </div>
+            </div>`;
 
+        mediaList.innerHTML = card;
+
+        return mediaList;
     }
-
-
-    return getMediaCardDOM;
+    return {
+        id,
+        photographerId,
+        video,
+        title,
+        image,
+        likes,
+        date,
+        price,
+        alt,
+        MediaDOM,
+    };
 }
