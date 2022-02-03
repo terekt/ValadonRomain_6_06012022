@@ -1,8 +1,8 @@
-a{
+a {
     color: white;
 }
 
-a:visited{
+a:visited {
     color: white;
 }
 
@@ -31,7 +31,7 @@ a:visited{
     width: 200px;
     border-radius: 50%;
     object-fit: cover;
-    box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.1);
+    box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.1);
 }
 
 .photograph-header h2 {
@@ -62,11 +62,76 @@ a:visited{
     cursor: pointer;
 }
 
+.sort-medias {
+    margin: 10px 0 30px 0;
+}
+
+.select {
+    display: inline-flex;
+    position: relative;
+    margin-top: 10px;
+    font-size: 1.125em;
+    outline: none;
+}
+
+.sort-medias .sort-medias {
+    display: block;
+}
+
+.sort-medias label {
+    margin: 0;
+    padding: 0;
+    margin-right: 20px;
+    font-weight: 700;
+}
+
+.sort-medias select {
+    width: 170px;
+    height: 70px;
+    font-weight: bold;
+    color: white;
+    padding: 11px 15px;
+    border: none;
+    background-color: #901C1C;
+    border-radius: 5px;
+    cursor: pointer;
+    text-indent: 1px;
+    outline: none;
+    appearance: none;
+
+}
+
+.sort-medias option {
+    line-height: 30px;
+    background-color: #901C1C;
+    position: absolute;
+    top: 0;
+    left: 50px;
+    outline: none;
+    color: #fff;
+}
+
+.sort-medias i {
+    position: relative;
+    top: 4px;
+    right: 35px;
+    color: white;
+    font-size: 1.125em;
+    pointer-events: none;
+
+}
+
+/* rotation button sort popularity/date/title  */
+.rotated {
+    transform: rotate(180deg);
+}
+
 .modal {
     border-radius: 5px;
     background-color: #DB8876;
     width: 50%;
     max-width: 700px;
+    max-height: 90vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -83,12 +148,12 @@ a:visited{
 
 .modal-close {
     background: none;
-	color: inherit;
-	border: none;
-	padding: 0;
-	font: inherit;
-	cursor: pointer;
-	outline: inherit;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
 }
 
 .modal-top-align {
@@ -102,7 +167,7 @@ a:visited{
 }
 
 .modal-top .modal-top-align h2, .modal-top h2 {
-    font-size: 64px;
+    font-size: 58px;
     font-weight: normal;
     color: #312E2E;
     margin-top: 0;
@@ -130,7 +195,7 @@ form {
 
 form label {
     color: #312E2E;
-    font-size: 36px;
+    font-size: 28px;
 }
 
 form div {
@@ -157,102 +222,12 @@ form input {
 
 #message {
     width: 100%;
-    height: 200px;
+    height: 100px;
     resize: none;
     border-radius: 5px;
     border: 0;
 }
 
-.sort {
-    margin: 50px 0;
-    padding: 0;
-    display: flex;
-    position: relative;
-    z-index: 100;
-    font-weight: bold;
-    font-size: 18px;
-    line-height: 23px;
-}
-
-#sortingMenu:hover #openMenuButton {
-    transform: rotate(180deg);
-    transition: 100ms;
-}
-
-#sortingMenu:hover .option {
-    display: block;
-    margin-bottom: 5px;
-}
-
-#sortingMenu:hover .selected {
-    margin-top: 11px;
-}
-
-#sortingMenu:hover .sort-list {
-    width: 100%;
-    height: 230%;
-    border-radius: 1px;
-    outline: 12px solid #901C1C;
-    background-color: #901C1C;
-}
-
-#openMenuButton {
-    cursor: pointer;
-    position:absolute;
-    right: 25px;
-    top: 20px;
-    border:none;
-    background-color: transparent;
-    color: white;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 18px;
-    line-height: 23px;
-}
-
-
-#openMenuButton.reverse {
-    transform: rotate(180deg);
-    transition: 100ms;
-}
-
-#sortingMenu {
-    background-color: #901C1C;
-    font-weight: bold;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: -22px;
-    margin-left: 120px;
-    width: 170px;
-    height: 70px;
-    position: absolute;
-    padding: 0 10px;
-    border: solid 2px transparent;
-}
-
-.option {
-    font-style: normal;
-    font-weight: bold;
-    font-size: 18px;
-    line-height: 23px;
-    padding: 11px;
-    margin: 0;
-    display: none;
-    text-align: left;
-}
-.option.selected {
-    display: block;
-}
-
-.menuOpened {
-    display: block;
-    z-index: 10;
-    border-bottom: solid 1px white;
-}
-.menuOpened.last {
-    border-bottom: none;
-}
 
 .media {
     display: flex;
@@ -268,8 +243,16 @@ form input {
     width: 350px;
     height: 300px;
     border-radius: 5px;
-    overflow: hidden;    
+    overflow: hidden;
     object-fit: cover;
+}
+
+
+.play {
+    color: white;
+    position: absolute;
+    margin: 115px 140px;
+    font-size: 70px;
 }
 
 .media_card h3 {
@@ -283,6 +266,13 @@ form input {
     align-items: flex-end;
 }
 
+.media_info h3 {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 300px;
+}
+
 .media_likes {
     display: flex;
     align-items: center;
@@ -290,10 +280,10 @@ form input {
 
 .media_likes button {
     background: none;
-	color: inherit;
-	border: none;
-	cursor: pointer;
-	outline: inherit;
+    color: inherit;
+    border: none;
+    cursor: pointer;
+    outline: inherit;
 }
 
 .like_img {
@@ -307,11 +297,11 @@ form input {
     display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
     -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
     width: 320px;
     height: 50px;
     position: fixed;
@@ -321,19 +311,108 @@ form input {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     background-color: #DB8876;
-  }
-  
-  .fixed-counter p {
+}
+
+.fixed-counter p {
     font-style: normal;
     font-weight: 500;
     font-size: 24px;
     line-height: 31px;
-  }
+}
 
-  .total-heart {
-      margin: 0 60px 0 0;
-  }
+.total-heart {
+    margin: 0 60px 0 0;
+}
 
-  .daily-rate {
+.daily-rate {
     margin-left: 5px;
-  }
+}
+
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    z-index: 500;
+    overflow: auto;
+    animation: lightboxin .5s;
+    transition: opacity .3s;
+}
+
+.fadeout {
+    opacity: 0;
+}
+
+.lightbox-next, .lightbox-prev {
+    top: 50%;
+    right: 120px;
+    margin-top: -15px;
+    z-index: 501;
+}
+
+.lightbox-prev {
+    right: auto;
+    left: 120px;
+}
+
+.lightbox-nav, .lightbox-exit {
+    font-size: 50px;
+    color: #911C1C;
+}
+
+.lightbox-close {
+    position: fixed;
+    top: 125px;
+    right: 125px;
+    z-index: 501;
+}
+
+.lightbox button {
+    opacity: .5;
+    cursor: pointer;
+    transition: opacity .3s;
+}
+
+.lightbox button:hover {
+    opacity: 1;
+}
+
+.lightbox-container {
+    margin: 0 195px 0 195px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.lightbox-container img {
+    max-width: 100%;
+    max-height: 80vh;
+    animation: lightboxin .5s;
+}
+
+
+.lightbox-next, .lightbox-prev, .lightbox-close {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+    position: fixed;
+}
+
+.lightbox-loader {
+    width: 38px;
+    height: 38px;
+    opacity: .5;
+    background: url(../assets/images/loader.svg) center center no-repeat;
+}
+
+@keyframes lightboxin {
+    form {opacity: 0;}
+    to {opacity: 1;}
+}

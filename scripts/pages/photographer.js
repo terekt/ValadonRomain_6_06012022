@@ -1,3 +1,6 @@
+var lightboxCreated = 0;
+//var lightboxCreated_cached = lightboxCreated;
+
 // Affiches les infos du photographe
 async function displayProfile() {
 
@@ -45,7 +48,7 @@ async function getFixedCounter() {
 }
 
 //incrémente les likes au clic sur les coeurs
-async function manageLikes(totallikes){
+async function manageLikes(totallikes) {
     await getPhotographers();
     const like = document.querySelectorAll(".like_img");
     const totallike = totallikes.querySelector(".total-likes");
@@ -60,15 +63,15 @@ async function manageLikes(totallikes){
 
             if (state == 0) {
                 siblingClick.innerHTML = parseInt(siblingClick.innerHTML) + 1;
-                totallike.innerHTML ++;
+                totallike.innerHTML++;
                 clickHeart.setAttribute('data-state', 1);
             } else {
                 siblingClick.innerHTML = parseInt(siblingClick.innerHTML) - 1;
-                totallike.innerHTML --;
+                totallike.innerHTML--;
                 clickHeart.setAttribute('data-state', 0);
             }
         });
-      }
+    }
 }
 
 // Affiches les médias du photographe
@@ -85,12 +88,78 @@ async function displayMedia() {
     });
 }
 
+//vient chercher les images et empèche la redirection vers l'image et renvois vers la lightbox
+/*async function Lightbox() {
+    const photographerMedia = await getPhotographers();
+    const links = document.querySelectorAll('a[href$=".png"], a[href$=".jpg"], a[href$=".jpeg"]')
+        .forEach(link => link.addEventListener('click', e => {
+            e.preventDefault()
+            constructor(e.currentTarget.getAttribute('href'))
+        }))
+
+    if (lightboxCreated == 1) {
+        const close = document.querySelector(".lightbox-close");
+        const prev = document.querySelector(".lightbox-prev");
+        const next = document.querySelector(".lightbox-next");
+        const lightbox = document.querySelector(".lightbox");
+        console.log(close, prev, next);
+        close.addEventListener("click", () => {
+            lightbox.getElementsByClassName.display = "none";
+            lightboxCreated = 0;
+        })
+    }
+}
+
+//assigne la lightbox au document avec pour donnée l'image sur laquelle on a cliqué
+function constructor(url) {
+    const element = this.lightboxDOM(url);
+    const child = document.querySelector("scripts");
+    document.body.insertBefore(element, child);
+    lightboxCreated = 1;
+}
+
+//créer la lightbox
+function lightboxDOM(url) {
+    const dom = document.createElement("div");
+    dom.classList.add("lightbox");
+    dom.innerHTML = `<button class="lightbox-close">
+        <i class="fas fa-times lightbox-exit"></i>
+    </button>
+    <button class="lightbox-prev">
+        <i class="fas fa-chevron-left lightbox-nav"></i>
+    </button>
+    <button class="lightbox-next">
+        <i class="fas fa-chevron-right lightbox-nav"></i>
+    </button>
+    <div class="lightbox-container">
+        <img src="${url}" alt="">
+    </div>`;
+    return dom;
+}
+
+//permet de fermer la lightbox et passer d'un média à un autre
+function naviguation() {
+    if (lightboxCreated == 1) {
+        const close = document.querySelector(".lightbox-close");
+        const prev = document.querySelector(".lightbox-prev");
+        const next = document.querySelector(".lightbox-next");
+        const lightbox = document.querySelector(".lightbox");
+        console.log(close, prev, next);
+        close.addEventListener("click", () => {
+            lightbox.getElementsByClassName.display = "none";
+            lightboxCreated = 0;
+        })
+    }
+}*/
+
 // Récupère les médias et infos du photographe et lance les fonctions pour les afficher
 async function initPhotographer() {
 
     displayMedia();
     displayProfile();
     getFixedCounter();
+    //Lightbox();
+    //naviguation();
 }
 
 

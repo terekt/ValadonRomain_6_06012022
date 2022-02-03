@@ -8,14 +8,15 @@ function mediaFactory(data) {
         mediaList.setAttribute("class","media_card");
 
         let card = "";
-        card += `<a href="#" data-mediaid="${id}" role="button">`;
+        card += `<a href="${media}" data-mediaid="${id}" class="medias">`;
 
         if (image !== undefined) {
             card += `<img src="${media}" alt="${alt}">`;
         } else if (video !== undefined) {
-            card += `<video>
+            card += `
+            <video>
                 <source src="./assets/photographers/${photographerId}/${video}" type="video/mp4">
-            </video>`;            
+            </video>`;   
         }
 
         card += `
@@ -27,7 +28,7 @@ function mediaFactory(data) {
                 <div class="media_likes">
                     <h3>${likes}</h3>
                     <button>
-                        <i class="fas fa-heart like_img" role="button"></i>
+                        <i class="fas fa-heart like_img"></i>
                     </button>
                 </div>
             </div>`;

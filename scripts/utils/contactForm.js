@@ -4,7 +4,7 @@ let nameDisplayed = false;
 
 async function launchModal() {
     resetData();
-    modal.style.display = "block";
+    modal.style.display = "flex";
 
     //vérifie que le nom ne soit pas affiché et l'affiche
     if (nameDisplayed == false) {
