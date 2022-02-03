@@ -52,7 +52,6 @@ async function manageLikes(totallikes) {
     await getPhotographers();
     const like = document.querySelectorAll(".like_img");
     const totallike = totallikes.querySelector(".total-likes");
-    console.log(totallike);
 
     for (const clickHeart of like) {
         clickHeart.addEventListener("click", () => {
@@ -79,13 +78,53 @@ async function displayMedia() {
 
     const photographerMedia = await getPhotographers();
     const mediaSection = document.querySelector(".media");
+    var mediaFilter = null;
 
+    const mediasphotographer = photographerMedia[1];
+    const filterBy = document.getElementById("sortingMenu").value;
+
+    //filtre popularité par défaut
+    mediaFilter = mediasphotographer.sort((a, b) => {
+        return a.likes - b.likes;
+    });
+
+    //filtre popularité
+    if (filterBy === "popularity") {
+        mediaFilter = mediasphotographer.sort((a, b) => {
+            return a.likes - b.likes;
+        });
+    }
+
+    //filtre titre
+    if (filterBy === "title") {
+        console.log("option du filtre : " + filterBy);
+        mediaFilter = mediasphotographer.sort((a, b) => {
+            if (a.title < b.title) {
+                return -1;
+            }
+            if (a.title > b.title) {
+                return 1;
+            }
+            return 0;
+        });
+    }
+
+    //filtre date
+    if (filterBy === "date") {
+        console.log("option du filtre : " + filterBy);
+        mediaFilter.sort((a, b) => {
+            return new Date(b.date) - new Date(a.date);
+        });
+    }
+
+    //affichage des médias via la liste trié
     mediaSection.innerHTML = "";
-    photographerMedia[1].forEach((media) => {
+    mediaFilter.forEach((media) => {
         const MediaModel = mediaFactory(media);
         const MediaDOM = MediaModel.MediaDOM();
         mediaSection.appendChild(MediaDOM);
     });
+
 }
 
 //vient chercher les images et empèche la redirection vers l'image et renvois vers la lightbox
