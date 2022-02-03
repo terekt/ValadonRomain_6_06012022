@@ -1,6 +1,7 @@
 //import {enableBodyScroll, disableBodyScroll} from "./body-scroll-lock"
 
 class lightbox {
+    //stocke les medias dans une array et appel de la fonction de création de la lightbox quand on clique sur un des média
     static init() {
         console.log("init")
         const links = Array.from(document.querySelectorAll("medias"))
@@ -11,7 +12,7 @@ class lightbox {
             }))
     }
 
-
+    // appel le DOM et le loader de l'image
     constructor(url, gallery) {
         this.element = this.buildDOM(url)
         this.images = gallery
@@ -22,6 +23,7 @@ class lightbox {
         document.addEventListener("keyup", this.onKeyUp.bind(this))
     }
 
+    //gère le chargement de le l'image avec une animmation et l'affiche une fois chargé
     loadImage(url) {
         this.url = null
         const image = new Image()
@@ -39,6 +41,7 @@ class lightbox {
         image.src = url
     }
 
+    //Créé la lightbox en fonction de l'image cliqué et gère la naviguation
     buildDOM(url) {
         const dom = document.createElement("div")
         dom.classList.add("lightbox")
@@ -60,6 +63,7 @@ class lightbox {
         return dom
     }
 
+    //ferme la lightbox via le bouton + clavier
     close(e) {
         e.preventDefault()
         this.element.classList.add("fadeout")
@@ -70,6 +74,7 @@ class lightbox {
         document.removeEventListener("keyup", this.onKeyUp)
     }
 
+    //va à l'image suivante via le bouton + clavier
     next(e) {
         e.preventDefault()
         let i = this.images.findIndex(image => image === this.url)
@@ -79,6 +84,7 @@ class lightbox {
         this.loadImage(this.images[i + 1])
     }
 
+    //va à l'image précédente via le bouton + clavier
     prev(e) {
         e.preventDefault()
         let i = this.images.findIndex(image => image === this.url)
@@ -88,6 +94,7 @@ class lightbox {
         this.loadImage(this.images[i - 1])
     }
 
+    //gère les input du clavier
     onKeyUp (e) {
         if (e.key == "escape") {
             this.close(e)
