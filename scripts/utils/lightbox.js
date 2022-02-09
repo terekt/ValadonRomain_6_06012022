@@ -5,6 +5,7 @@ class lightbox {
     static init() {
         console.log("init")
         const links = Array.from(document.querySelectorAll("medias"))
+        console.log(links)
         const gallery = links.map(link => link.getAttribute("href"))
         links.forEach(link => link.addEventListener("click", e => {
                 e.preventDefault()
@@ -27,7 +28,7 @@ class lightbox {
     loadImage(url) {
         this.url = null
         const image = new Image()
-        const container = this.element.querySelector("lightbox-container")
+        const container = this.element.querySelector(".lightbox-container")
         const loader = document.createElement("div")
         loader.classList.add("lightbox-loader")
         container.innerHTML = ''

@@ -7,7 +7,9 @@ async function launchModal() {
     modal.style.display = "flex";
     
     const filterBy = document.getElementById("sortingMenu").value;
-    console.log(filterBy);
+    if (filterBy === "title") {
+        return console.log(filterBy)
+    }
 
     //vérifie que le nom ne soit pas affiché et l'affiche
     if (nameDisplayed == false) {
