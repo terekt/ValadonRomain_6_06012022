@@ -24,7 +24,7 @@ class lightbox {
         document.addEventListener("keyup", this.onKeyUp.bind(this))
     }
 
-    //gère le chargement de le l'image avec une animmation et l'affiche une fois chargé
+    //gère le chargement de l'image avec une animation et l'affiche une fois chargé
     loadImage(url) {
         this.url = null
         const image = new Image()

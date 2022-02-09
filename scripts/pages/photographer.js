@@ -1,4 +1,8 @@
 let filter = document.getElementById("sortingMenu");
+let lightbox = document.querySelector(".lightbox");
+let closeButton = document.querySelector(".lightbox-close");
+let prevButton = document.querySelector(".lightbox-prev");
+let nextButton = document.querySelector(".lightbox-next");
 
 // Affiches les infos du photographe
 async function displayProfile(photographerData) {
@@ -145,25 +149,89 @@ async function displayMedia(photographerMedia) {
 
 }
 
-const close = document.querySelector(".lightbox-close");
-const prev = document.querySelector(".lightbox-prev");
-const next = document.querySelector(".lightbox-next");
-const lightbox = document.querySelector(".lightbox");
 
-//vient chercher les images et empèche la redirection vers l'image et renvois vers la lightbox
+//gère la création de lightbox en fonction du tri des médias
 async function Lightbox() {
     const photographerMedia = await getPhotographers();
 
-    const links = document.querySelectorAll('a[href$=".png"], a[href$=".jpg"], a[href$=".jpeg"]')
-        .forEach(link => link.addEventListener('click', e => {
-            e.preventDefault()
-            constructor(e.currentTarget.getAttribute('href'))
-        }))
+    LightboxCreate()
 
-    console.log(close, prev, next);
-    close.addEventListener("click", () => {
-        lightbox.getElementsByClassName.display = "none";
-        lightboxCreated = 0;
+    filter.addEventListener("click", () => {
+        LightboxCreate()
+    })
+
+}
+
+let links = "";
+
+//récupère les images dans la page et écoute quand on clique sur l'une d'entre elles
+function LightboxCreate() {
+
+    //récupère les images dans la page 
+    links = document.querySelectorAll('a[href$=".png"], a[href$=".jpg"], a[href$=".jpeg"]')
+
+
+    //écoute quand on clique sur l'une d'entre elles et récupère les éléments créés
+    links.forEach(link => link.addEventListener('click', e => {
+        e.preventDefault()
+        constructor(e.currentTarget.getAttribute('href'))
+        closeButton = document.querySelector(".lightbox-close");
+        prevButton = document.querySelector(".lightbox-prev");
+        nextButton = document.querySelector(".lightbox-next");
+        lightbox = document.querySelector(".lightbox");
+        naviguation();
+    }))
+}
+
+//permet de fermer la lightbox et passer d'un média à un autre
+function naviguation() {
+    let lightboxImage = document.querySelector(".lightbox-container").querySelector("img");
+    let imageUrl = lightboxImage.getAttribute("src");
+    let imageUrlCache = imageUrl.substring(1);
+    let imageArray = Array.from(links);
+    let cachedPath = "";
+
+
+    closeButton.addEventListener("click", () => {
+        console.log("exit");
+        lightbox.style.display = "none";
+        lightbox.remove();
+    })
+
+    prevButton.addEventListener("click", () => {
+        lightboxImage = document.querySelector(".lightbox-container").querySelector("img");
+        imageUrl = lightboxImage.getAttribute("src");
+        imageUrlCache = imageUrl.substring(1);
+        let i = imageArray.findIndex(element => element.pathname === imageUrlCache);
+
+        if (i === 0) {
+            cachedPath = imageArray[imageArray.length - 1].getAttribute("href");
+            lightboxImage.setAttribute("src", cachedPath);
+        } else if (i !== 0) {
+            cachedPath = imageArray[i - 1].getAttribute("href");
+            console.log(cachedPath)
+            lightboxImage.setAttribute("src", cachedPath);
+        }
+    })
+
+    nextButton.addEventListener("click", () => {
+        console.log("next");
+        lightboxImage = document.querySelector(".lightbox-container").querySelector("img");
+        imageUrl = lightboxImage.getAttribute("src");
+        imageUrlCache = imageUrl.substring(1);
+        let i = imageArray.findIndex(element => element.pathname === imageUrlCache);
+
+        if (i === imageArray.length - 1) {
+            cachedPath = imageArray[0].getAttribute("href");
+            console.log(cachedPath)
+            lightboxImage.setAttribute("src", cachedPath);
+        } else if (i !== imageArray.length) {
+            cachedPath = imageArray[i + 1].getAttribute("href");
+            console.log(cachedPath)
+            lightboxImage.setAttribute("src", cachedPath);
+        }
+
+
     })
 }
 
@@ -172,7 +240,7 @@ function constructor(url) {
     const element = this.lightboxDOM(url);
     const child = document.querySelector(".scripts");
     document.body.insertBefore(element, child);
-    lightboxCreated = 1;
+    console.log(url);
 }
 
 //créer la lightbox
@@ -194,20 +262,7 @@ function lightboxDOM(url) {
     return dom;
 }
 
-//permet de fermer la lightbox et passer d'un média à un autre
-function naviguation() {
-    if (lightboxCreated == 1) {
-        const close = document.querySelector(".lightbox-close");
-        const prev = document.querySelector(".lightbox-prev");
-        const next = document.querySelector(".lightbox-next");
-        const lightbox = document.querySelector(".lightbox");
-        console.log(close, prev, next);
-        close.addEventListener("click", () => {
-            lightbox.getElementsByClassName.display = "none";
-            lightboxCreated = 0;
-        })
-    }
-}
+
 
 // Récupère les médias et infos du photographe et lance les fonctions pour les afficher
 async function initPhotographer() {
@@ -218,7 +273,6 @@ async function initPhotographer() {
     displayProfile(photographerMedia);
     getFixedCounter();
     Lightbox();
-    naviguation();
 }
 
 
