@@ -15,8 +15,8 @@ function mediaFactory(data) {
         } else if (video !== undefined) {
             card += `<a href="./assets/photographers/${photographerId}/${video}" data-mediaid="${id}" class="medias media-video">
             <i class="fas fa-solid fa-play play"></i>
-            <video>
-                <source src="./assets/photographers/${photographerId}/${video}" type="video/mp4">
+            <video alt="${title}">
+                <source src="./assets/photographers/${photographerId}/${video}" alt="${title}" type="video/mp4">
             </video>`;   
         }
 

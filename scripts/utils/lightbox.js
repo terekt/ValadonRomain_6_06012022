@@ -67,11 +67,6 @@ function naviguation(media) {
             next(mediaType, mediaArray);
         }
     })
-
-    /*if (lightboxDestroyed == true){
-        return;
-    }*/
-
 }
 
 function close() { //ferme la lightbox
