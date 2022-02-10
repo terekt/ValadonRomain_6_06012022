@@ -196,6 +196,7 @@ form {
 form label {
     color: #312E2E;
     font-size: 28px;
+    width: 675px
 }
 
 form div {
@@ -251,13 +252,17 @@ form input {
 .play {
     color: white;
     position: absolute;
-    margin: 115px 140px;
+    margin: 116px 0 0 150px;
     font-size: 70px;
 }
 
-.media_card h3 {
+.media_card h3, .media_card p {
     font-size: 24px;
     line-height: 31px;
+}
+
+.media_card p {
+    color: #901C1C;
 }
 
 .media_info {

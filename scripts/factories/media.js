@@ -10,10 +10,11 @@ function mediaFactory(data) {
 
         if (image !== undefined) {
             
-            card += `<a href="./assets/photographers/${photographerId}/${image}" data-mediaid="${id}" class="medias media-image" tabindex="0">
+            card += `<a href="./assets/photographers/${photographerId}/${image}" data-mediaid="${id}" class="medias media-image">
             <img src="./assets/photographers/${photographerId}/${image}" alt="${title}">`;
         } else if (video !== undefined) {
-            card += `<a href="./assets/photographers/${photographerId}/${video}" data-mediaid="${id}" class="medias media-video" tabindex="0">
+            card += `<a href="./assets/photographers/${photographerId}/${video}" data-mediaid="${id}" class="medias media-video">
+            <i class="fas fa-solid fa-play play"></i>
             <video>
                 <source src="./assets/photographers/${photographerId}/${video}" type="video/mp4">
             </video>`;   
@@ -26,8 +27,8 @@ function mediaFactory(data) {
                     <h3>${title}</h3>
                 </div>
                 <div class="media_likes">
-                    <h3>${likes}</h3>
-                    <button>
+                    <p>${likes}</p>
+                    <button aria-label="clickez ici pour liker">
                         <i class="fas fa-heart like_img"></i>
                     </button>
                 </div>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 
 <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
@@ -14,43 +14,54 @@
 <body>
     <div id="container">
         <header>
-            <a href="./index.html" tabindex="2"><img src="assets/images/logo.png" alt="logo" class="logo" /></a>
+            <a href="./index.html"><img src="assets/images/logo.png" alt="Fisheye logo" class="logo" /></a>
         </header>
         <main id="main">
             <div class="photograph-header">
-                <button class="contact_button" onclick="launchModal()" tabindex="2">Contactez-moi</button>
+                <button class="contact_button" onclick="launchModal()">Contactez-moi</button>
             </div>
         </main>
         <div class="media"></div>
     </div>
-    <div id="contact_modal">
+    <div id="contact_modal" aria-hidden="true">
         <div class="modal">
             <div class="modal-top">
                 <div class="modal-top-align">
                     <h2>Contactez-moi</h2>
                     <button class="modal-close">
-                        <img src="assets/icons/close.svg" onclick="closeModal()" tabindex="0" />
+                        <img src="assets/icons/close.svg" alt="icone de fermeture du formulaire" onclick="closeModal()"
+                            tabindex="-1" />
                     </button>
                 </div>
             </div>
             <form id="myForm">
                 <div class="formData">
-                    <label>Prénom</label>
-                    <input class="text-control" type="text" id="first" name="first" minlength="2" tabindex="0" />
+                    <label>
+                        Prénom
+                        <input class="text-control" type="text" id="first" name="first" minlength="2" tabindex="-1" />
+                    </label>
                 </div>
                 <div class="formData">
-                    <label>Nom</label>
-                    <input class="text-control" type="text" id="last" name="last" tabindex="0" />
+                    <label>
+                        Nom
+                        <input class="text-control" type="text" id="last" name="last" tabindex="-1" />
+                    </label>
                 </div>
                 <div class="formData">
-                    <label>E-mail</label>
-                    <input class="text-control" type="email" id="email" name="email" tabindex="0" />
+                    <label>
+                        E-mail
+                        <input class="text-control" type="email" id="email" name="email" tabindex="-1" />
+                    </label>
                 </div>
                 <div class="formData">
-                    <label>Votre message</label>
-                    <textarea class="text-control message" type="text" id="message" name="message" tabindex="0"></textarea>
+                    <label>
+                        Votre message
+                        <textarea class="text-control message" type="text" id="message" name="message"
+                            tabindex="-1"></textarea>
+                    </label>
                 </div>
-                <button class="contact_button submit" type="submit" tabindex="1">Envoyer</button>
+                <button class="contact_button submit" type="submit" aria-label="bouton d'envoi"
+                    tabindex="1">Envoyer</button>
             </form>
         </div>
     </div>

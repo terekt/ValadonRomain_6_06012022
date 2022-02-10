@@ -32,7 +32,6 @@ async function displayProfile(photographerData) {
 
 };
 
-
 //Affiche le prix et les likes en bas de l'écran
 async function getFixedCounter() {
 
@@ -76,12 +75,8 @@ async function manageLikes(totallikes) {
     }
 }
 
-
-
-
 // Affiches les médias du photographe
 async function displayMedia(photographerMedia) {
-
 
     const mediaSection = document.querySelector(".media");
     var mediaFilter = null;

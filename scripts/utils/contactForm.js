@@ -5,6 +5,12 @@ let nameDisplayed = false;
 async function launchModal() {
     resetData();
     modal.style.display = "flex";
+
+    document.addEventListener("keydown", function(event) {
+        if (event.key == "Escape"){
+            closeModal();
+        }
+    })
     
     const filterBy = document.getElementById("sortingMenu").value;
     if (filterBy === "title") {

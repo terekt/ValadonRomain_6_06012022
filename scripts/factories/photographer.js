@@ -7,7 +7,7 @@ function photographerFactory(data) {
         const article = document.createElement( 'article' );
         const a = document.createElement( 'a' );
         a.setAttribute("href", `photographer.html?id=${id}`);
-        a.setAttribute("tabindex", "0");
+        a.setAttribute("arial-label","Photographe " + name);
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture);
         img.setAttribute("alt", name);
