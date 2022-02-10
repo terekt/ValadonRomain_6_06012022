@@ -14,6 +14,7 @@ async function launchModal() {
     textAreas[2].setAttribute("tabindex","1");
     textAreas[3].setAttribute("tabindex","1");
     submitArea[0].setAttribute("tabindex","1");
+    modal.setAttribute("aria-hidden", "false");
     textAreas[0].focus();
 
 
@@ -90,6 +91,7 @@ function closeModal() {
     textAreas[2].setAttribute("tabindex","-1");
     textAreas[3].setAttribute("tabindex","-1");
     submitArea[0].setAttribute("tabindex","-1");
+    modal.setAttribute("aria-hidden", "true");
 }
 
 // Event de validation du formulaire
