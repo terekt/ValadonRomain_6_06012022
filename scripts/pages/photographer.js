@@ -21,6 +21,8 @@ async function displayProfile(photographerData) {
     h3.textContent = photographerData[0].city + ", " + photographerData[0].country;
     h4.textContent = photographerData[0].tagline;
     img.setAttribute("src", picture);
+    console.log(photographerData[0])
+    img.setAttribute("alt", photographerData[0].name)
 
     profileSection.appendChild(infoProfile)
     infoProfile.appendChild(h2);

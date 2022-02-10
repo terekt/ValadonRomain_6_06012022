@@ -22,7 +22,12 @@ function LightboxCreate() {
     //écoute quand on clique sur l'une d'entre elles et récupère les éléments créés
     links.forEach(link => link.addEventListener('click', e => {
         e.preventDefault()
-        constructor(e.currentTarget.getAttribute('href'), e.currentTarget)
+        if (e.currentTarget.getAttribute("class") == "medias media-video"){
+            constructor(e.currentTarget.getAttribute('href'), e.currentTarget.getAttribute('href'), e.currentTarget);
+        }
+        else if (e.currentTarget.getAttribute("class") == "medias media-image") {
+            constructor(e.currentTarget.getAttribute('href'), e.currentTarget.querySelector("img").getAttribute('alt'), e.currentTarget);
+        }
         closeButton = document.querySelector(".lightbox-close");
         prevButton = document.querySelector(".lightbox-prev");
         nextButton = document.querySelector(".lightbox-next");
@@ -49,6 +54,7 @@ function naviguation(media) {
         let mediaContainer = document.querySelector(".lightbox-container");
         let mediaUrl = "";
         let mediaCache = "";
+        let imageAlt = "";
 
         if (mediaType === ".mp4") { //si l'url du média fini par .mp4 alors on récupère l'url via l'objet html correspondant et on attribu son url à mediaUrl
             let lightboxVideo = mediaContainer.querySelector("video").querySelector("source");
@@ -73,8 +79,9 @@ function naviguation(media) {
             mediaType = cachedPath.slice(cachedPath.length - 4); //récupère les 4 dernièrs caractères de l'url
 
             if (mediaType === ".jpg") {  //si l'url fini par .jpg alors créer une image
+                imageAlt = mediaArray[mediaArray.length - 1].querySelector("img").getAttribute("alt"); //obtiens l'attribut alt du média précédent dans la liste
                 mediaContainer.innerHTML = `
-                    <img src="${cachedPath}" alt="">`;
+                    <img src="${cachedPath}" alt="${imageAlt}">`;
             }
             else if (mediaType === ".mp4") {  //si l'url fini par .mp4 alors créer une vidéo
                 mediaContainer.innerHTML = `<video controls>
@@ -90,8 +97,9 @@ function naviguation(media) {
             cachedPath = mediaArray[i - 1].getAttribute("href");
             mediaType = cachedPath.slice(cachedPath.length - 4);
             if (mediaType === ".jpg") {
+                imageAlt = mediaArray[i - 1].querySelector("img").getAttribute("alt");
                 mediaContainer.innerHTML = `
-                    <img src="${cachedPath}" alt="">`;
+                    <img src="${cachedPath}" alt="${imageAlt}">`;
             }
             else if (mediaType === ".mp4") {
                 mediaContainer.innerHTML = `<video controls>
@@ -109,6 +117,7 @@ function naviguation(media) {
         let mediaContainer = document.querySelector(".lightbox-container");
         let mediaUrl = "";
         let mediaCache = "";
+        let imageAlt = "";
 
         if (mediaType === ".mp4") { //si l'url du média fini par .mp4 alors on récupère l'url via l'objet html correspondant et on attribu son url à mediaUrl
             let lightboxVideo = mediaContainer.querySelector("video").querySelector("source");
@@ -133,8 +142,9 @@ function naviguation(media) {
             mediaType = cachedPath.slice(cachedPath.length - 4); //récupère les 4 dernièrs caractères de l'url
 
             if (mediaType === ".jpg") {  //si l'url fini par .jpg alors créer une image
+                imageAlt = mediaArray[0].querySelector("img").getAttribute("alt");
                 mediaContainer.innerHTML = `
-                    <img src="${cachedPath}" alt="">`;
+                    <img src="${cachedPath}" alt="${imageAlt}">`;
             }
             else if (mediaType === ".mp4") {  //si l'url fini par .mp4 alors créer une vidéo
                 mediaContainer.innerHTML = `<video controls>
@@ -150,8 +160,9 @@ function naviguation(media) {
             mediaType = cachedPath.slice(cachedPath.length - 4); //récupère les 4 dernièrs caractères de l'url
 
             if (mediaType === ".jpg") {
+                imageAlt = mediaArray[i + 1].querySelector("img").getAttribute("alt");
                 mediaContainer.innerHTML = `
-                    <img src="${cachedPath}" alt="">`;
+                    <img src="${cachedPath}" alt="${imageAlt}">`;
             }
             else if (mediaType === ".mp4") {
                 mediaContainer.innerHTML = `<video controls>
@@ -166,19 +177,20 @@ function naviguation(media) {
 }
 
 //assigne la lightbox au document avec pour donnée l'image sur laquelle on a cliqué
-function constructor(url, media) {
-    const element = this.lightboxDOM(url, media);
+function constructor(url, alt, media) {
+    const element = this.lightboxDOM(url, alt, media);
     const child = document.querySelector(".scripts");
     document.body.insertBefore(element, child);
 }
 
 //créer la lightbox
-function lightboxDOM(url, media) {
+function lightboxDOM(url, alt, media) {
     const mediaType = media.getAttribute("href").slice(media.getAttribute("href").length - 4);
     const dom = document.createElement("div");
     dom.classList.add("lightbox");
 
     if (mediaType === ".jpg") {
+        console.log(alt);
         dom.innerHTML = `<button class="lightbox-close">
         <i class="fas fa-times lightbox-exit"></i>
     </button>
@@ -189,7 +201,7 @@ function lightboxDOM(url, media) {
         <i class="fas fa-chevron-right lightbox-nav"></i>
     </button>
     <div class="lightbox-container">
-        <img src="${url}" alt="">
+        <img src="${url}" alt="${alt}">
     </div>`;
     }
 
