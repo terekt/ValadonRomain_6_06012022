@@ -10,10 +10,10 @@ function mediaFactory(data) {
 
         if (image !== undefined) {
             
-            card += `<a href="./assets/photographers/${photographerId}/${image}" data-mediaid="${id}" class="medias media-image">
+            card += `<a href="./assets/photographers/${photographerId}/${image}" data-mediaid="${id}" class="medias media-image" tabindex="0">
             <img src="./assets/photographers/${photographerId}/${image}" alt="${title}">`;
         } else if (video !== undefined) {
-            card += `<a href="./assets/photographers/${photographerId}/${video}" data-mediaid="${id}" class="medias media-video">
+            card += `<a href="./assets/photographers/${photographerId}/${video}" data-mediaid="${id}" class="medias media-video" tabindex="0">
             <video>
                 <source src="./assets/photographers/${photographerId}/${video}" type="video/mp4">
             </video>`;   

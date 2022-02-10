@@ -14,6 +14,7 @@ function sortMedia() {
     label.setAttribute("class", "sort");
     label.textContent = "Trier par";
     button.setAttribute("id", "sortingMenu");
+    button.setAttribute("tabindex", "0");
     icon.setAttribute("id", "openMenuButton");
     icon.setAttribute("class", "fas fa-chevron-down arrow-down");
     option1.setAttribute("value", "popularity");
