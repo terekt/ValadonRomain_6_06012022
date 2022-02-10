@@ -34,18 +34,21 @@ a:visited {
     box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.1);
 }
 
-.photograph-header h2 {
+.photograph-header h1 {
     color: #D3573C;
     font-size: 64px;
     font-weight: normal;
 }
 
-.photograph-header h3 {
+.photograph-header h2 {
+    margin-top: 0;
     font-size: 24px;
+    color: #901C1C;
 }
 
-.photograph-header h4 {
+.photograph-header p {
     font-size: 18px;
+    margin-top: 20px;
 }
 
 .contact_button {
@@ -196,7 +199,7 @@ form {
 form label {
     color: #312E2E;
     font-size: 28px;
-    width: 675px
+    width: 100%;
 }
 
 form div {

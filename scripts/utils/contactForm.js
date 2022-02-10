@@ -1,12 +1,23 @@
 //affiche la modal
 const modal = document.getElementById("contact_modal");
 let nameDisplayed = false;
+let closeArea = document.getElementsByClassName("close");
+let textAreas = document.getElementsByClassName("text-control");
+let submitArea = document.getElementsByClassName("submit");
 
 async function launchModal() {
     resetData();
     modal.style.display = "flex";
+    closeArea[0].setAttribute("tabindex","2");
+    textAreas[0].setAttribute("tabindex","1");
+    textAreas[1].setAttribute("tabindex","1");
+    textAreas[2].setAttribute("tabindex","1");
+    textAreas[3].setAttribute("tabindex","1");
+    submitArea[0].setAttribute("tabindex","1");
+    textAreas[0].focus();
 
-    document.addEventListener("keydown", function(event) {
+
+    document.addEventListener("keydown", function(event) { //ferme la modal si on utilise la touche échap
         if (event.key == "Escape"){
             closeModal();
         }
@@ -73,6 +84,12 @@ function validateForm(x) {
 function closeModal() {
     modal.style.display = "none";
     resetData();
+    closeArea[0].setAttribute("tabindex","-1");
+    textAreas[0].setAttribute("tabindex","-1");
+    textAreas[1].setAttribute("tabindex","-1");
+    textAreas[2].setAttribute("tabindex","-1");
+    textAreas[3].setAttribute("tabindex","-1");
+    submitArea[0].setAttribute("tabindex","-1");
 }
 
 // Event de validation du formulaire
