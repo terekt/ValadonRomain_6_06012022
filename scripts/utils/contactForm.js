@@ -47,8 +47,8 @@ async function launchModal() {
 //récupère nom et id du photographe et créer les éléments correspondants
 
 //RegEX pour verifier la validité des champs
-regName = /^[a-zA-Z ]+$/;
-regEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+const regName = /^[a-zA-Z ]+$/;
+const regEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
 //Messages d'erreurs
 const error1 = "Veuillez entrer 2 caractères ou plus pour le champ du prénom.";
@@ -63,7 +63,6 @@ const submitButton = document.querySelector(".submit");
 const formInput = document.querySelectorAll(".formData input");
 const formInputArea = document.querySelector(".formData textarea");
 const formData = document.querySelectorAll(".formData");
-const modalClose = document.querySelector(".modal-close");
 
 submitButton.addEventListener("click", validateForm);
 
@@ -182,8 +181,6 @@ function errorMessage(errorText, formNumber, errorNumber) {
 
         errorState[errorNumber] = true; // L'erreur est définie comme affichée
     }
-    else {
-    }
 
 }
 
@@ -193,8 +190,6 @@ function errorReset(formNumber, errorNumber) {
     if (errorState[errorNumber] == true) { // Si l'erreur est définie comme affichée
         formNumber.parentNode.removeChild(formNumber.nextSibling); // Enlève la div après l'input spécifié
         errorState[errorNumber] = false; // L'erreur est définie comme cachée
-    }
-    else {
     }
 
 }

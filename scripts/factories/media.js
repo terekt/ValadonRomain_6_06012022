@@ -28,8 +28,8 @@ function mediaFactory(data) {
                 </div>
                 <div class="media_likes">
                     <p>${likes}</p>
-                    <button aria-label="clickez ici pour liker">
-                        <i class="fas fa-heart like_img"></i>
+                    <button aria-label="clickez ici pour liker" tabindex="-1">
+                        <i class="fas fa-heart like_img" tabindex="0"></i>
                     </button>
                 </div>
             </div>`;
