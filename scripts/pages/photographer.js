@@ -3,6 +3,7 @@ let lightbox = document.querySelector(".lightbox");
 let closeButton = document.querySelector(".lightbox-close");
 let prevButton = document.querySelector(".lightbox-prev");
 let nextButton = document.querySelector(".lightbox-next");
+let optionSelected = document.querySelector(".selected").textContent.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim();
 
 // Affiches les infos du photographe
 async function displayProfile(photographerData) {
@@ -75,26 +76,8 @@ async function manageLikes(totallikes) {
     }
 }
 
-var optionSelected = document.querySelector(".selected").textContent.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim();
-
-
-// Affiches les médias du photographe
-async function displayMedia(photographerMedia) {
-
-    const mediaSection = document.querySelector(".media");
-    var mediaFilter = null;
-
-    const mediasphotographer = photographerMedia[1];
-
-    //filtre popularité par défaut
-    mediaFilter = mediasphotographer.sort((a, b) => {
-        return a.likes - b.likes;
-    });
-
-    //écoute quand on clique sur le bouton de filtre
-    optionsList.forEach(o => {
-        o.addEventListener("click", () => {
-
+function sortupdate(mediaFilter, mediaSection, mediasphotographer){
+    
             //met à jour l'option selectionnée
             optionsList = document.querySelectorAll(".option");
             optionSelected = document.querySelector(".selected").textContent.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim();
@@ -136,9 +119,33 @@ async function displayMedia(photographerMedia) {
                 const MediaDOM = MediaModel.MediaDOM();
                 mediaSection.appendChild(MediaDOM);
             });
-        });
+}
+
+// Affiches les médias du photographe
+async function displayMedia(photographerMedia) {
+
+    const mediaSection = document.querySelector(".media");
+    var mediaFilter = null;
+
+    const mediasphotographer = photographerMedia[1];
+
+    //filtre popularité par défaut
+    mediaFilter = mediasphotographer.sort((a, b) => {
+        return a.likes - b.likes;
     });
 
+    //écoute quand on clique sur le bouton de filtre
+    optionsList.forEach(o => {
+        o.addEventListener("click", () => {
+            sortupdate(mediaFilter, mediaSection, mediasphotographer);
+        });
+        o.addEventListener("keydown", function(event) {
+            if (event.key == "Enter"){
+                sortupdate(mediaFilter, mediaSection, mediasphotographer);
+                selected.focus();
+            }
+        })    
+    });
 
 
     //affichage des médias via l'option de tri par défaut
