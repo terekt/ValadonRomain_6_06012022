@@ -1,6 +1,6 @@
 async function getPhotographers() {
     //let url = '../../data/photographers.json';
-    let url = 'https://raw.githubusercontent.com/OpenClassrooms-Student-Center/Front-End-Fisheye/main/data/photographers.json';
+    let url = 'https://drive.google.com/file/d/1R6njxtxPZbP4X5oeBplq4BjWo1Kw-Zhn/view';
     try {
         let res = await fetch(url)
         let json = await res.json();
