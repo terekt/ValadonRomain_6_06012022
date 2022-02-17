@@ -1,5 +1,5 @@
     async function getAllPhotographers() {
-        let url = '../../ValadonRomain_6_06012022/data/photographers.json';
+        let url = '/ValadonRomain_6_06012022/data/photographers.json';
         //let url = 'https://terekt.github.io/ValadonRomain_6_06012022/data/photographers.json';
 
         try {
