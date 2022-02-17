@@ -1,8 +1,3 @@
-let filter = document.getElementById("sortingMenu");
-let lightbox = document.querySelector(".lightbox");
-let closeButton = document.querySelector(".lightbox-close");
-let prevButton = document.querySelector(".lightbox-prev");
-let nextButton = document.querySelector(".lightbox-next");
 let optionSelected = document.querySelector(".selected").textContent.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim();
 
 // Affiches les infos du photographe
@@ -31,7 +26,7 @@ async function displayProfile(photographerData) {
     profileSection.appendChild(infoProfile.previousElementSibling);
     profileSection.appendChild(img);
 
-};
+}
 
 //Affiche le prix et les likes en bas de l'écran
 async function getFixedCounter() {

@@ -5,9 +5,11 @@ let imageAlt = "";
 let i = "";
 let mediaLightbox = "";
 let mediaType = "";
-let mediaCached = "";
-let lightboxDestroyed = true;
-
+let lightbox = document.querySelector(".lightbox");
+let closeButton = document.querySelector(".lightbox-close");
+let prevButton = document.querySelector(".lightbox-prev");
+let nextButton = document.querySelector(".lightbox-next");
+let filter = document.getElementById("sortingMenu");
 
 //gère la création de lightbox en fonction du tri des médias
 async function Lightbox() {
@@ -49,7 +51,6 @@ function LightboxCreate() {
 
 //permet de fermer la lightbox et passer d'un média à un autre
 function naviguation(media) {
-    mediaCached = media;
     mediaType = media.getAttribute("href").slice(media.getAttribute("href").length - 4); //récupère les 4 dernièrs caractères de l'url du média
     let mediaArray = Array.from(links); //converti la nodelist en array
 
