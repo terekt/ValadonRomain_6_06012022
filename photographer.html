@@ -21,6 +21,28 @@
                 <button class="contact_button" onclick="launchModal()">Contactez-moi</button>
             </div>
         </main>
+        <div id="sortbutton">
+            <label class="sorted">Trier par</label>
+            <div class="select-box">
+                <div class="options-container">
+                    <div class="option">
+                        <input type="radio" class="radio" id="popularity" name="category" />
+                        <label for="popularity">Popularité</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" class="radio" id="date" name="category" />
+                        <label for="date">Date</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" class="radio" id="title" name="category" />
+                        <label for="title">Titre</label>
+                    </div>
+                </div>
+                <div class="selected">
+                    Popularité
+                </div>
+            </div>
+        </div>
         <div class="media"></div>
     </div>
     <div id="contact_modal" aria-hidden="true">
@@ -30,7 +52,7 @@
                     <h2>Contactez-moi</h2>
                     <button class="modal-close">
                         <img src="assets/icons/close.svg" alt="icone de fermeture du formulaire" onclick="closeModal()"
-                            tabindex="-1" class="close"/>
+                            tabindex="-1" class="close" />
                     </button>
                 </div>
             </div>
@@ -68,7 +90,7 @@
     <div class="fixed-counter"></div>
     <div class="scripts">
         <script src="scripts/utils/getId.js"></script>
-        <script src="scripts/utils/sort.js"></script>
+        <script src="scripts/utils/sortbutton.js"></script>
         <script src="./scripts/utils/contactForm.js"></script>
         <script src="scripts/utils/getPhotographers.js"></script>
         <script src="scripts/utils/lightbox.js"></script>

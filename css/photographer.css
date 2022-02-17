@@ -65,68 +65,94 @@ a:visited {
     cursor: pointer;
 }
 
-.sort-medias {
-    margin: 10px 0 30px 0;
+/*bouton de tri*/
+
+#sortbutton {
+    margin: 20px 0 30px 0;
 }
 
-.select {
-    display: inline-flex;
-    position: relative;
-    margin-top: 10px;
-    font-size: 1.125em;
-    outline: none;
+.sorted {
+    margin: 26px 10px 0 0;
+    float: left;
 }
 
-.sort-medias .sort-medias {
-    display: block;
-}
-
-.sort-medias label {
-    margin: 0;
-    padding: 0;
-    margin-right: 20px;
-    font-weight: 700;
-}
-
-.sort-medias select {
+.select-box {
+    display: flex;
     width: 170px;
-    height: 70px;
-    font-weight: bold;
-    color: white;
-    padding: 11px 15px;
-    border: none;
-    background-color: #901C1C;
-    border-radius: 5px;
-    cursor: pointer;
-    text-indent: 1px;
-    outline: none;
-    appearance: none;
-
+    flex-direction: column;
 }
 
-.sort-medias option {
-    line-height: 30px;
-    background-color: #901C1C;
+.select-box .options-container {
+    background: #901C1C;
+    color: #f5f6fa;
+    max-height: 0;
+    width: 100%;
+    opacity: 0;
+    transition: all 0.4s;
+    border-radius: 0 0 8px 8px;
+    overflow: hidden;
     position: absolute;
-    top: 0;
-    left: 50px;
-    outline: none;
-    color: #fff;
+    width: 170px;
+    margin-top: 71px;
+    z-index: 700;
+    order: 1;
 }
 
-.sort-medias i {
+.selected {
+    background: #901C1C;
+    border-radius: 8px;
+    color: #f5f6fa;
     position: relative;
-    top: 4px;
-    right: 35px;
-    color: white;
-    font-size: 1.125em;
-    pointer-events: none;
-
+    order: 0;
+    padding: 26px 24px;
+    cursor: pointer;
 }
 
-/* rotation button sort popularity/date/title  */
-.rotated {
-    transform: rotate(180deg);
+.selected::after {
+    content: "";
+    background: url("../assets/icons/arrow-down.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    position: absolute;
+    height: 100%;
+    width: 32px;
+    right: 10px;
+    top: 20px;
+
+    transition: all 0.4s;
+}
+
+.select-box .clicked {
+    border-radius: 8px 8px 0 0;
+}
+
+.select-box .options-container.active {
+    max-height: 240px;
+    opacity: 1;
+    cursor: pointer;
+}
+
+.select-box .options-container.active+.selected::after {
+    transform: rotateX(180deg);
+    top: -18px;
+}
+
+.select-box .clicked {
+    border-radius: 8px 8px 0 0;
+}
+
+.options-container .option {
+    padding: 20px 10px;
+}
+
+.select-box .option {
+    margin: 0 15px;
+    border-top: 1px solid white;
+}
+
+.select-box .option .radio {
+    display: none;
 }
 
 .modal {

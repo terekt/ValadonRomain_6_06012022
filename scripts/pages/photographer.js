@@ -75,6 +75,9 @@ async function manageLikes(totallikes) {
     }
 }
 
+var optionSelected = document.querySelector(".selected").textContent.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim();
+
+
 // Affiches les médias du photographe
 async function displayMedia(photographerMedia) {
 
@@ -89,47 +92,50 @@ async function displayMedia(photographerMedia) {
     });
 
     //écoute quand on clique sur le bouton de filtre
-    filter.addEventListener("click", () => {
+    optionsList.forEach(o => {
+        o.addEventListener("click", () => {
 
-        //met à jour l'option selectionnée
-        filter = document.getElementById("sortingMenu");
+            //met à jour l'option selectionnée
+            optionsList = document.querySelectorAll(".option");
+            optionSelected = document.querySelector(".selected").textContent.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim();
 
-        //filtre popularité
-        if (filter.value == "popularity") {
-            console.log("option du filtre : " + filter.value);
-            mediaFilter = mediasphotographer.sort((a, b) => {
-                return a.likes - b.likes;
+            //filtre popularité
+            if (optionSelected == "Popularité") {
+                console.log("option du filtre : " + optionSelected);
+                mediaFilter = mediasphotographer.sort((a, b) => {
+                    return a.likes - b.likes;
+                });
+            }
+
+            //filtre titre
+            if (optionSelected == "Titre") {
+                console.log("option du filtre : " + optionSelected);
+                mediaFilter = mediasphotographer.sort((a, b) => {
+                    if (a.title < b.title) {
+                        return -1;
+                    }
+                    if (a.title > b.title) {
+                        return 1;
+                    }
+                    return 0;
+                });
+            }
+
+            //filtre date
+            if (optionSelected == "Date") {
+                console.log("option du filtre : " + optionSelected);
+                mediaFilter.sort((a, b) => {
+                    return new Date(b.date) - new Date(a.date);
+                });
+            }
+
+            //met à jour l'affichage des médias via la liste triée
+            mediaSection.innerHTML = "";
+            mediaFilter.forEach((media) => {
+                const MediaModel = mediaFactory(media);
+                const MediaDOM = MediaModel.MediaDOM();
+                mediaSection.appendChild(MediaDOM);
             });
-        }
-
-        //filtre titre
-        if (filter.value == "title") {
-            console.log("option du filtre : " + filter.value);
-            mediaFilter = mediasphotographer.sort((a, b) => {
-                if (a.title < b.title) {
-                    return -1;
-                }
-                if (a.title > b.title) {
-                    return 1;
-                }
-                return 0;
-            });
-        }
-
-        //filtre date
-        if (filter.value == "date") {
-            console.log("option du filtre : " + filter.value);
-            mediaFilter.sort((a, b) => {
-                return new Date(b.date) - new Date(a.date);
-            });
-        }
-
-        //met à jour l'affichage des médias via la liste triée
-        mediaSection.innerHTML = "";
-        mediaFilter.forEach((media) => {
-            const MediaModel = mediaFactory(media);
-            const MediaDOM = MediaModel.MediaDOM();
-            mediaSection.appendChild(MediaDOM);
         });
     });
 
@@ -144,7 +150,6 @@ async function displayMedia(photographerMedia) {
     });
 
 }
-
 
 
 // Récupère les médias et infos du photographe et lance les fonctions pour les afficher
