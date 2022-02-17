@@ -1,6 +1,6 @@
     async function getPhotographers() {
         //let url = '../../data/photographers.json';
-        let url = 'https://drive.google.com/file/d/1R6njxtxPZbP4X5oeBplq4BjWo1Kw-Zhn/view';
+        let url = 'https://terekt.github.io/ValadonRomain_6_06012022/data/photographers.json';
 
         try {
             let res = await fetch(url)
