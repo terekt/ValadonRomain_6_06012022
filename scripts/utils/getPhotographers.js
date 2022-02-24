@@ -5,8 +5,8 @@ async function getPhotographers() {
         let res = await fetch(url)
         let json = await res.json();
         const photographerId = await photographerID();
-        const photographerData = json.photographers.find(photographer => photographer.id == photographerId);
-        const photographerMedia = json.media.filter(data => data.photographerId == photographerId);
+        const photographerData = json.photographers.find(photographer => photographer.id == photographerId); // récupère les données du photographe de la page
+        const photographerMedia = json.media.filter(data => data.photographerId == photographerId); // récupère les médias du photographe de la page
         return [photographerData, photographerMedia];
     }
     catch (error) {

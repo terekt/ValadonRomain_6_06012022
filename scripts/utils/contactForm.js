@@ -7,15 +7,15 @@ let submitArea = document.getElementsByClassName("submit");
 
 async function launchModal() {
     resetData();
-    modal.style.display = "flex";
-    closeArea[0].setAttribute("tabindex","2");
+    modal.style.display = "flex"; // affiche le formulaire
+    closeArea[0].setAttribute("tabindex","2");  // permet de selectionner au clavier les champs et boutons du formulaire
     textAreas[0].setAttribute("tabindex","1");
     textAreas[1].setAttribute("tabindex","1");
     textAreas[2].setAttribute("tabindex","1");
     textAreas[3].setAttribute("tabindex","1");
     submitArea[0].setAttribute("tabindex","1");
-    modal.setAttribute("aria-hidden", "false");
-    textAreas[0].focus();
+    modal.setAttribute("aria-hidden", "false"); // indique que le formulaire est affiché via la balise aria correspondante
+    textAreas[0].focus(); // met en focus le premier champ lors du lancement du formulaire
 
 
     document.addEventListener("keydown", function(event) { //ferme la modal si on utilise la touche échap
@@ -44,22 +44,20 @@ async function launchModal() {
     }
 }
 
-//récupère nom et id du photographe et créer les éléments correspondants
-
-//RegEX pour verifier la validité des champs
+// RegEX pour verifier la validité des champs
 const regName = /^[a-zA-Z ]+$/;
 const regEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
-//Messages d'erreurs
+// Messages d'erreurs
 const error1 = "Veuillez entrer 2 caractères ou plus pour le champ du prénom.";
 const error2 = "Veuillez entrer 2 caractères ou plus pour le champ du nom.";
 const error3 = "Veuillez entrer une adresse mail valide.";
 const error4 = "Veuillez entrer 10 caractères ou plus pour le champ du message.";
 
 
-let errorState = [false, false, false, false];
-const submitButton = document.querySelector(".submit");
+let errorState = [false, false, false, false]; // créer une array contenant l'état des erreurs pour chaque champ
 
+const submitButton = document.querySelector(".submit");
 const formInput = document.querySelectorAll(".formData input");
 const formInputArea = document.querySelector(".formData textarea");
 const formData = document.querySelectorAll(".formData");
@@ -75,22 +73,22 @@ document.getElementById("message").addEventListener("blur", messageValid);
 
 
 
-function validateForm(x) {
+function validateForm(x) { // empèche le comportement par défaut du bouton d'envoi et vérifie si les données sont correctes
     x.preventDefault();
     checkFields();
 }
 
 
 function closeModal() {
-    modal.style.display = "none";
-    resetData();
-    closeArea[0].setAttribute("tabindex","-1");
+    modal.style.display = "none"; // ferme le formulaire
+    resetData(); // réinitialise les données
+    closeArea[0].setAttribute("tabindex","-1"); //empèche la naviguation au clavier des élément du formulaire
     textAreas[0].setAttribute("tabindex","-1");
     textAreas[1].setAttribute("tabindex","-1");
     textAreas[2].setAttribute("tabindex","-1");
     textAreas[3].setAttribute("tabindex","-1");
     submitArea[0].setAttribute("tabindex","-1");
-    modal.setAttribute("aria-hidden", "true");
+    modal.setAttribute("aria-hidden", "true"); // indique que le formulaire est caché via la balise aria correspondante
 }
 
 // Event de validation du formulaire
@@ -103,19 +101,13 @@ function checkFields() {
     // On récupère les resultats de chaque champ dans une array
     let validList = [nameValid(), surnameValid(), emailValid(), messageValid()];
 
-    //console.log(inputList);
-    //console.log(validList);
-    //console.log(formData);
-    console.log(formData[2]);
-
-
-    // On vérifie si les champs sont vides et erronés
+    // On vérifie si les champs sont vides et erronés quand on clique sur le bouton d'envoi
     if (inputList.includes(0) || validList.includes(false)) {
         return false;
     }
-    else {
-        modal.style.display = "none";
-        return console.log(formInput[0].value, formInput[1].value, formInput[2].value, formInputArea.value);
+    else { // quand tout est bon
+        modal.style.display = "none"; // ferme le formulaire
+        return console.log(formInput[0].value, formInput[1].value, formInput[2].value, formInputArea.value); // affiche le résultat du formulaire dans la console
     }
 }
 

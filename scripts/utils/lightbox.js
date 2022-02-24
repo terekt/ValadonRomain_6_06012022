@@ -5,13 +5,14 @@ let imageAlt = "";
 let i = "";
 let mediaLightbox = "";
 let mediaType = "";
+let links = "";
 let lightbox = document.querySelector(".lightbox");
 let closeButton = document.querySelector(".lightbox-close");
 let prevButton = document.querySelector(".lightbox-prev");
 let nextButton = document.querySelector(".lightbox-next");
 let filter = document.getElementById("sortingMenu");
 
-//gère la création de lightbox en fonction du tri des médias
+// gère la création de lightbox en fonction du tri des médias
 async function Lightbox() {
     const photographerMedia = await getPhotographers();
 
@@ -22,23 +23,20 @@ async function Lightbox() {
     })
 
 }
-
-let links = "";
-
-//récupère les images dans la page et écoute quand on clique sur l'une d'entre elles
+// récupère les images dans la page et écoute quand on clique sur l'une d'entre elles
 function LightboxCreate() {
 
-    //récupère les images dans la page 
+    // récupère les médias dans la page
     links = document.querySelectorAll('a[href$=".jpg"], a[href$=".mp4"]')
 
 
-    //écoute quand on clique sur l'une d'entre elles et récupère les éléments créés
+    // écoute quand on clique sur l'un d'entre eux
     links.forEach(link => link.addEventListener('click', e => {
         e.preventDefault()
-        if (e.currentTarget.getAttribute("class") == "medias media-video") {
+        if (e.currentTarget.getAttribute("class") == "medias media-video") { // vérifie si le média est une vidéo
             constructor(e.currentTarget.getAttribute('href'), e.currentTarget.getAttribute('href'), e.currentTarget);
         }
-        else if (e.currentTarget.getAttribute("class") == "medias media-image") {
+        else if (e.currentTarget.getAttribute("class") == "medias media-image") { // vérifie si le média est une image
             constructor(e.currentTarget.getAttribute('href'), e.currentTarget.querySelector("img").getAttribute('alt'), e.currentTarget);
         }
         closeButton = document.querySelector(".lightbox-close");
@@ -49,15 +47,64 @@ function LightboxCreate() {
     }))
 }
 
-//permet de fermer la lightbox et passer d'un média à un autre
+// assigne la lightbox au document avec pour donnée le média sur lequelle on a cliqué
+function constructor(url, alt, media) {
+    const element = this.lightboxDOM(url, alt, media);
+    const child = document.querySelector(".scripts");
+    document.body.insertBefore(element, child);
+}
+
+
+//créer la lightbox
+function lightboxDOM(url, alt, media) {
+    const mediaType = media.getAttribute("href").slice(media.getAttribute("href").length - 4);
+    const dom = document.createElement("div");
+    dom.classList.add("lightbox");
+
+    if (mediaType === ".jpg") { // vérifie si le média est une image pour créer la lightbox correspondante
+        dom.innerHTML = `<button class="lightbox-close">
+        <i class="fas fa-times lightbox-exit"></i>
+    </button>
+    <button class="lightbox-prev">
+        <i class="fas fa-chevron-left lightbox-nav"></i>
+    </button>
+    <button class="lightbox-next">
+        <i class="fas fa-chevron-right lightbox-nav"></i>
+    </button>
+    <div class="lightbox-container">
+        <img src="${url}" alt="${alt}">
+    </div>`;
+    }
+
+    else if (mediaType === ".mp4") { // vérifie si le média est une vidéo pour créer la lightbox correspondante
+        dom.innerHTML = `<button class="lightbox-close">
+            <i class="fas fa-times lightbox-exit"></i>
+        </button>
+        <button class="lightbox-prev">
+            <i class="fas fa-chevron-left lightbox-nav"></i>
+        </button>
+        <button class="lightbox-next">
+            <i class="fas fa-chevron-right lightbox-nav"></i>
+        </button>
+        <div class="lightbox-container">
+        <video controls>
+            <source src="${url}" type="video/mp4">
+        </video>
+        </div>`;
+    }
+
+    return dom;
+}
+
+// permet de fermer la lightbox et passer d'un média à un autre
 function naviguation(media) {
-    mediaType = media.getAttribute("href").slice(media.getAttribute("href").length - 4); //récupère les 4 dernièrs caractères de l'url du média
-    let mediaArray = Array.from(links); //converti la nodelist en array
+    mediaType = media.getAttribute("href").slice(media.getAttribute("href").length - 4); // récupère les 4 dernièrs caractères de l'url du média
+    let mediaArray = Array.from(links); // converti la nodelist en array
 
     closeButton.addEventListener("click", () => { close(); });
     prevButton.addEventListener("click", () => { prev(mediaType, mediaArray, media); });
     nextButton.addEventListener("click", () => { next(mediaType, mediaArray, media); });
-    document.addEventListener("keydown", function(event) {
+    document.addEventListener("keydown", function(event) { // écoute les touches du clavier pour naviguer dans la lightbox
         if (event.key == "Escape"){
             close();
         }
@@ -77,7 +124,7 @@ function close() { //ferme la lightbox
 
 }
 
-function prev(mediaType, mediaArray) {
+function prev(mediaType, mediaArray) { // affiche le média précédent
     let mediaContainer = document.querySelector(".lightbox-container");
     mediaType = document.querySelector(".lightbox-container").querySelectorAll('source[src$=".mp4"],img[src$=".jpg"]');
     mediaType = mediaType[0].getAttribute("src");
@@ -101,7 +148,7 @@ function prev(mediaType, mediaArray) {
     i = mediaArray.findIndex(element => element.pathname === mediaCache);
 
     //si on est sur le premier média, renvois au dernier
-    if (i === 0) {
+    if (i === 0) { // gère le cas ou on est au premier média dans la liste
         cachedPath = mediaArray[mediaArray.length - 1].getAttribute("href"); //obtiens l'url du média précédent dans la liste
         mediaType = cachedPath.slice(cachedPath.length - 4); //récupère les 4 dernièrs caractères de l'url
 
@@ -120,7 +167,7 @@ function prev(mediaType, mediaArray) {
     }
 
     //sinon renvois juste au précédent
-    else if (i !== 0) {
+    else if (i !== 0) { // gère le cas normal
         cachedPath = mediaArray[i - 1].getAttribute("href");
         mediaType = cachedPath.slice(cachedPath.length - 4);
         if (mediaType === ".jpg") {
@@ -138,7 +185,7 @@ function prev(mediaType, mediaArray) {
     }
 }
 
-function next(mediaType, mediaArray) {
+function next(mediaType, mediaArray) { // affiche le média suivant
     let mediaContainer = document.querySelector(".lightbox-container");
     mediaType = document.querySelector(".lightbox-container").querySelectorAll('source[src$=".mp4"],img[src$=".jpg"]');
     mediaType = mediaType[0].getAttribute("src");
@@ -158,11 +205,11 @@ function next(mediaType, mediaArray) {
         mediaCache = mediaUrl.substring(1);
     }
 
-    //cherche l'url dans la liste des média et retourne son id
+    // cherche l'url dans la liste des média et retourne son id
     i = mediaArray.findIndex(element => element.pathname === mediaCache);
 
 
-    if (i === mediaArray.length - 1) {
+    if (i === mediaArray.length - 1) { // gère le cas ou on est au dernier média dans la liste
         cachedPath = mediaArray[0].getAttribute("href"); //obtiens l'url du média précédent dans la liste
         mediaType = cachedPath.slice(cachedPath.length - 4); //récupère les 4 dernièrs caractères de l'url
 
@@ -179,7 +226,7 @@ function next(mediaType, mediaArray) {
 
         mediaLightbox.remove();
 
-    } else if (i !== mediaArray.length) {
+    } else if (i !== mediaArray.length) { // gère le cas normal
 
         cachedPath = mediaArray[i + 1].getAttribute("href");
         mediaType = cachedPath.slice(cachedPath.length - 4); //récupère les 4 dernièrs caractères de l'url
@@ -198,52 +245,4 @@ function next(mediaType, mediaArray) {
         mediaLightbox.remove();
 
     }
-}
-
-//assigne la lightbox au document avec pour donnée l'image sur laquelle on a cliqué
-function constructor(url, alt, media) {
-    const element = this.lightboxDOM(url, alt, media);
-    const child = document.querySelector(".scripts");
-    document.body.insertBefore(element, child);
-}
-
-//créer la lightbox
-function lightboxDOM(url, alt, media) {
-    const mediaType = media.getAttribute("href").slice(media.getAttribute("href").length - 4);
-    const dom = document.createElement("div");
-    dom.classList.add("lightbox");
-
-    if (mediaType === ".jpg") {
-        dom.innerHTML = `<button class="lightbox-close">
-        <i class="fas fa-times lightbox-exit"></i>
-    </button>
-    <button class="lightbox-prev">
-        <i class="fas fa-chevron-left lightbox-nav"></i>
-    </button>
-    <button class="lightbox-next">
-        <i class="fas fa-chevron-right lightbox-nav"></i>
-    </button>
-    <div class="lightbox-container">
-        <img src="${url}" alt="${alt}">
-    </div>`;
-    }
-
-    else if (mediaType === ".mp4") {
-        dom.innerHTML = `<button class="lightbox-close">
-            <i class="fas fa-times lightbox-exit"></i>
-        </button>
-        <button class="lightbox-prev">
-            <i class="fas fa-chevron-left lightbox-nav"></i>
-        </button>
-        <button class="lightbox-next">
-            <i class="fas fa-chevron-right lightbox-nav"></i>
-        </button>
-        <div class="lightbox-container">
-        <video controls>
-            <source src="${url}" type="video/mp4">
-        </video>
-        </div>`;
-    }
-
-    return dom;
 }
