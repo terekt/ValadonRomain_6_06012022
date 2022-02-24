@@ -9,7 +9,7 @@
         }
         catch (error){
             console.log(error);
-        } 
+        }
     }
 
     async function displayData(photographers) {
