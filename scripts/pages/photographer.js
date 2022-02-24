@@ -4,7 +4,7 @@ let optionSelected = document.querySelector(".selected").textContent.replace(/[\
 async function displayProfile(photographerData) {
 
 
-    const picture = 'assets/photographers/profils/' + photographerData[0].portrait;
+    const picture = './assets/photographers/Profils/' + photographerData[0].portrait;
     const profileSection = document.querySelector(".photograph-header");
     const infoProfile = document.createElement('div');
     const h1 = document.createElement('h1');
@@ -19,7 +19,7 @@ async function displayProfile(photographerData) {
     img.setAttribute("src", picture);
     img.setAttribute("alt", photographerData[0].name);
 
-    profileSection.appendChild(infoProfile)
+    profileSection.appendChild(infoProfile);
     infoProfile.appendChild(h1);
     infoProfile.appendChild(h2);
     infoProfile.appendChild(accroche);
