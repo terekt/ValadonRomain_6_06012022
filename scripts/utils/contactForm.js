@@ -23,11 +23,6 @@ async function launchModal() {
             closeModal();
         }
     })
-    
-    const filterBy = document.getElementById("sortingMenu").value;
-    if (filterBy === "title") {
-        return console.log(filterBy)
-    }
 
     //vérifie que le nom ne soit pas affiché et l'affiche
     if (nameDisplayed == false) {
