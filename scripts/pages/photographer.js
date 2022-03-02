@@ -120,7 +120,7 @@ async function initPhotographer() {
     displayMedia(photographerMedia);
     displayProfile(photographerMedia);
     getFixedCounter();
-    Lightbox();
+    LightboxCreate();
 }
 
 

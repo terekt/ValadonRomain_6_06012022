@@ -10,19 +10,7 @@ let lightbox = document.querySelector(".lightbox");
 let closeButton = document.querySelector(".lightbox-close");
 let prevButton = document.querySelector(".lightbox-prev");
 let nextButton = document.querySelector(".lightbox-next");
-let filter = document.getElementById("sortingMenu");
 
-// gère la création de lightbox en fonction du tri des médias
-async function Lightbox() {
-    const photographerMedia = await getPhotographers();
-
-    LightboxCreate()
-
-    filter.addEventListener("click", () => {
-        LightboxCreate()
-    })
-
-}
 // récupère les images dans la page et écoute quand on clique sur l'une d'entre elles
 function LightboxCreate() {
 
