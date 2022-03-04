@@ -4,7 +4,7 @@
 //affiche la modal
 const modal = document.getElementById("contact_modal");
 let nameDisplayed = false;
-let closeArea = document.getElementsByClassName("close");
+let closeArea = document.getElementsByClassName("modal-close");
 let textAreas = document.getElementsByClassName("text-control");
 let submitArea = document.getElementsByClassName("submit");
 
@@ -27,7 +27,7 @@ async function launchModal() {
         }
     })
 
-    document.querySelector(".close").addEventListener("keydown", function(event) { //ferme la modal avec entrer si on a pour focus l'icone le bouton de fermeture
+    document.querySelector(".modal-close").addEventListener("keydown", function(event) { //ferme la modal avec entrer si on a pour focus l'icone le bouton de fermeture
         if (event.key == "Enter"){
             closeModal();
         }
