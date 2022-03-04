@@ -1,3 +1,6 @@
+/*global mediaFactory, getPhotographers, getFixedCounter, LightboxCreate*/
+/*eslint no-undef: "error"*/
+
 let optionSelected = document.querySelector(".selected").textContent.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim();
 
 // Affiches les infos du photographe
@@ -27,7 +30,6 @@ async function displayProfile(photographerData) {
     profileSection.appendChild(img);
 
 }
-
 
 function sortupdate(mediaFilter, mediaSection, mediasphotographer){
     

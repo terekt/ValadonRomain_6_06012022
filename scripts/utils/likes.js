@@ -1,3 +1,5 @@
+/*global getPhotographers*/
+/*eslint no-undef: "error"*/
 
 // Affiche le prix et les likes en bas de l'écran
 async function getFixedCounter() {

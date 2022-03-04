@@ -1,3 +1,6 @@
+/*global getPhotographers*/
+/*eslint no-undef: "error"*/
+
 //affiche la modal
 const modal = document.getElementById("contact_modal");
 let nameDisplayed = false;
@@ -20,6 +23,12 @@ async function launchModal() {
 
     document.addEventListener("keydown", function(event) { //ferme la modal si on utilise la touche échap
         if (event.key == "Escape"){
+            closeModal();
+        }
+    })
+
+    document.querySelector(".close").addEventListener("keydown", function(event) { //ferme la modal avec entrer si on a pour focus l'icone le bouton de fermeture
+        if (event.key == "Enter"){
             closeModal();
         }
     })
