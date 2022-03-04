@@ -22,24 +22,31 @@ async function getFixedCounter() {
 // incrémente les likes au clic sur les coeurs
 async function manageLikes(totallikes) {
     await getPhotographers();
-    const like = document.querySelectorAll(".like_img");
+    const like = document.querySelectorAll(".like");
     const totallike = totallikes.querySelector(".total-likes");
 
     for (const clickHeart of like) {
         clickHeart.addEventListener("click", () => {
-            likeUpdate(clickHeart, totallike)
+            likeUpdate(clickHeart, totallike);
         });
-        clickHeart.addEventListener("keydown", function(event) {
-            if (event.key == "Enter"){
-                likeUpdate(clickHeart, totallike)
+        clickHeart.addEventListener("keyup", function (event) {
+            if (event.key == "Enter") {
+                likeUpdate(clickHeart, totallike);
             }
-        })  
+        })
     }
+
+    like.forEach(element => element.addEventListener('keyup', () => {
+        if (event.key == "Enter") {
+            likeUpdate(element, totallike);
+        }
+    }))
+
 }
 
 function likeUpdate(clickHeart, totallike) {
-    
-    let siblingClick = clickHeart.parentNode.previousElementSibling; // récupère le nombre de like
+
+    let siblingClick = clickHeart.previousElementSibling; // récupère le nombre de like
     let state = clickHeart.getAttribute('data-state') || 0; // créé une variable pour définir l'état de chaque boutton like
 
     if (state == 0) { // si le bouton n'a pas été cliqué, alors on ajoute +1 au nombre contenu dans le html

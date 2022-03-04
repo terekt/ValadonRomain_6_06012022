@@ -38,7 +38,7 @@ function closeSort(optionsContainer, selected, optionsList, o) {
     selected.innerHTML = o.querySelector("label").innerHTML; // change le label du bouton par l'option choisit 
     optionsContainer.classList.remove("active");
     selected.classList.remove("clicked");
-    optionsList[0].setAttribute("tabindex",""); // empèche les options du bouton de tri naviguable au clavier une fois l'option choisit
-    optionsList[1].setAttribute("tabindex","");
-    optionsList[2].setAttribute("tabindex","");
+    optionsList[0].setAttribute("tabindex","-1"); // empèche les options du bouton de tri naviguable au clavier une fois l'option choisit
+    optionsList[1].setAttribute("tabindex","-1");
+    optionsList[2].setAttribute("tabindex","-1");
   }
