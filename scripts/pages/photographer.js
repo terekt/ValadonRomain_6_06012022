@@ -34,7 +34,6 @@ async function displayProfile(photographerData) {
 function sortupdate(mediaFilter, mediaSection, mediasphotographer){
     
             //met à jour l'option selectionnée
-            optionsList = document.querySelectorAll(".option");
             optionSelected = document.querySelector(".selected").textContent.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim();
 
             //filtre popularité
@@ -81,7 +80,8 @@ async function displayMedia(photographerMedia) {
 
     const mediaSection = document.querySelector(".media");
     var mediaFilter = null;
-
+    var optionsList = document.querySelectorAll(".option");
+    var selected = document.querySelector(".selected")
     const mediasphotographer = photographerMedia[1];
 
     //filtre popularité par défaut
